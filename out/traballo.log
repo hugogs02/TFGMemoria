@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.20)  20 DEC 2023 20:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.20)  14 JAN 2024 20:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -330,19 +330,183 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/sc' in size <13.13947> not available
 
 (./capitulos/introducion.tex
 Cap\'{\i }tulo 1.
-) [1
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+./capitulos/introducion.tex:23: Missing $ inserted.
+<inserted text> 
+                $
+l.23 ...ón da mesma, coma poden ser o metano (CH_
+                                                  4), monóxido de carbono, ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
 
-] [2
+LaTeX Warning: Command \' invalid in math mode on input line 23.
+
+./capitulos/introducion.tex:23: Please use \mathaccent for accents in math mode
+.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.23 ...sma, coma poden ser o metano (CH_4), monó
+                                                  xido de carbono, formaldeh...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./capitulos/introducion.tex:23: You can't use `\spacefactor' in math mode.
+<argument> ...cefactor \spacefactor }\spacefactor 
+                                                  \accent@spacefactor 
+l.23 ...sma, coma poden ser o metano (CH_4), monó
+                                                  xido de carbono, formaldeh...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
 
 
+LaTeX Warning: Command \' invalid in math mode on input line 23.
 
-]
+./capitulos/introducion.tex:23: Please use \mathaccent for accents in math mode
+.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.23 ... (CH_4), monóxido de carbono, formaldehí
+                                                  do, dióxido de nitróxeno...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./capitulos/introducion.tex:23: Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.23 ... (CH_4), monóxido de carbono, formaldehí
+                                                  do, dióxido de nitróxeno...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 23.
+
+./capitulos/introducion.tex:23: You can't use `\spacefactor' in math mode.
+<argument> ...cefactor \spacefactor }\spacefactor 
+                                                  \accent@spacefactor 
+l.23 ... (CH_4), monóxido de carbono, formaldehí
+                                                  do, dióxido de nitróxeno...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 23.
+
+./capitulos/introducion.tex:23: Please use \mathaccent for accents in math mode
+.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.23 ... monóxido de carbono, formaldehído, dió
+                                                  xido de nitróxeno, ozono,...
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./capitulos/introducion.tex:23: You can't use `\spacefactor' in math mode.
+<argument> ...cefactor \spacefactor }\spacefactor 
+                                                  \accent@spacefactor 
+l.23 ... monóxido de carbono, formaldehído, dió
+                                                  xido de nitróxeno, ozono,...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 23.
+
+./capitulos/introducion.tex:23: Please use \mathaccent for accents in math mode
+.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.23 ...carbono, formaldehído, dióxido de nitró
+                                                  xeno, ozono, aerosol ou
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./capitulos/introducion.tex:23: You can't use `\spacefactor' in math mode.
+<argument> ...cefactor \spacefactor }\spacefactor 
+                                                  \accent@spacefactor 
+l.23 ...carbono, formaldehído, dióxido de nitró
+                                                  xeno, ozono, aerosol ou
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 24.
+
+./capitulos/introducion.tex:24: Please use \mathaccent for accents in math mode
+.
+\add@accent ... \let \ignorespaces \relax \accent 
+                                                  #1 #2\egroup \ifmmode \els...
+l.24 dió
+         xido de xofre.
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+./capitulos/introducion.tex:24: You can't use `\spacefactor' in math mode.
+<argument> ...cefactor \spacefactor }\spacefactor 
+                                                  \accent@spacefactor 
+l.24 dió
+         xido de xofre.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./capitulos/introducion.tex:25: Missing $ inserted.
+<inserted text> 
+                $
+l.25 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./capitulos/introducion.tex:25: Missing } inserted.
+<inserted text> 
+                }
+l.25 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no � in font cmex10!
+Missing character: There is no � in font cmex10!
+Missing character: There is no � in font cmex10!
+Missing character: There is no � in font cmex10!
+Missing character: There is no � in font cmex10!
+
+Overfull \hbox (84.8566pt too wide) in paragraph at lines 20--25
+\OT1/cmr/m/n/12 (CH$[])\OML/cmm/m/it/12 ; mon[]xidodecarbono; formaldeh[]$ 
+ []
+
+[1
+
+
+]) [2]
 \openout2 = `capitulos/cap2.aux'.
 
  (./capitulos/cap2.tex
 Cap\'{\i }tulo 2.
 ) [3
+
+
+
 
 
 ] [4
@@ -540,13 +704,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 5695 strings out of 474174
- 95161 string characters out of 5749676
+ 5696 strings out of 474174
+ 95180 string characters out of 5749676
  1942460 words of memory out of 5000000
- 27834 multiletter control sequences out of 15000+600000
+ 27835 multiletter control sequences out of 15000+600000
  568292 words of font info for 74 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 57i,8n,65p,539b,1319s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,539b,1320s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/202
 3/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-d
@@ -563,7 +727,7 @@ ic/amsfonts/cm/cmti12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmtt12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm12
 00.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
 Output written on C:/Users/Hugo/IdeaProjects/TFGMemoria/out/traballo.pdf (35 pa
-ges, 241792 bytes).
+ges, 248855 bytes).
 PDF statistics:
  211 PDF objects out of 1000 (max. 8388607)
  134 compressed objects within 2 object streams

@@ -1,5 +1,7 @@
 \babel@toc {galician}{}\relax 
 \contentsline {chapter}{\numberline {1}Introdución}{1}{}%
+\contentsline {section}{\numberline {1.1}Obxectivos do traballo}{2}{}%
+\contentsline {section}{\numberline {1.2}Estrutura da memoria}{2}{}%
 \contentsline {chapter}{\numberline {2}Especificación de Requisitos}{3}{}%
 \contentsline {chapter}{\numberline {3}Deseño}{5}{}%
 \contentsline {chapter}{\numberline {4}Probas}{7}{}%
