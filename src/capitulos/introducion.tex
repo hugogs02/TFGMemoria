@@ -1,4 +1,4 @@
-\chapter{Introdución}
+\chapter{Introdución}\label{introducion}
 \hyphenation{In-te-re-se}
 
 Obxectivos Xerais, Relación da Documentación que conforma a Memoria,
@@ -9,7 +9,6 @@ arquitecturas utilizadas, xustificación da súa elección, etc.).
 O cambio climático é un asunto que, actualmente, está á orde do día. O aumento das temperaturas a nivel global é un asunto que preocupa non só ós
 científicos, senón tamén á poboación en xeral. As causas do cambio climático son moitas, pero podemos estar de acordo en que unha gran parte é
 debida á presenza de múltiples gases ou substancias químicas que afectan á atmosfera.
-------COMPLETAR AQUI-------
 
 Todos estes axentes afectan non só ó medio ambiente, senón ós seres humanos. Por iso, monitorizar a súa evolución é algo crucial, especialmente en
 entornos especialmente críticos, coma poden ser as cidades, nas cales a conxunción dunha gran densidade de poboación e movementos en áreas, polo xeral,
@@ -20,8 +19,8 @@ que se causen danos ó entorno no que vivimos.
 Así, dende a Axencia Espacial Europea (ESA) lanzouse, no ano 2017, un satélite de observación terreste nomeado Sentinel-5 Precursor (ou Sentinel-5P).
 Dito satélite, que se enmarca dentro do Programa Copernico, emprega un instrumento denominado espectrómetro, co obxectivo de monitorizar a contaminación
 atmosférica. Desta forma, TROPOMI proporciona observacións de forma diaria de gases atmosféricos que son chave á hora de monitorizar a calidade do aire
-e realizar predicións sobre a evolución da mesma, coma poden ser o metano (CH4), monóxido de carbono, formaldehído, dióxido de nitróxeno, ozono, aerosol ou
-dióxido de xofre.
+e realizar predicións sobre a evolución da mesma, coma poden ser o metano ($CH_{4}$), monóxido de carbono ($CO$), formaldehído ($HCHO$), dióxido de nitróxeno
+($NO_{2}$), ozono ($O_{3}$), aerosol ou dióxido de xofre ($SO_{2}$).
 
 Este satélite proporciona datos a dous niveis distintos:
 \begin{itemize}
@@ -37,9 +36,16 @@ os mesmos, poder facer un seguimento da evolución ó longo do tempo da contamin
 a que, ó tratarse dun área relativamente reducida, o procesamento dos datos será máis sinxelo, posto que será preciso procesar menos arquivos de menor tamaño.
 
 
-\section{Obxectivos do traballo}
+\section{Obxectivos do traballo}\label{obxectivos}
+Os obxectivos deste traballo de fin de grao son os seguintes:
+\begin{enumerate}
+    \item Mapear a contaminación atmosférica a partir de datos de sensores remotos, con especial relevancia en entornos urbanos
+    \item Monitorizar a variabilidade e tendencia dos diferentes parámetros satelitais relacionados coa contaminación do aire.
+    \item Desenvolver un visor online que permita representar de forma dinámica a información.
+    \item Implementar un sistema interoperable de distribución dos datos e produtos.
+\end{enumerate}
 
-\section{Estrutura da memoria}
+\section{Estrutura da memoria}\label{estrutura}
 A presente memoria estrutúrase do seguinte xeito:
 \begin{itemize}
     \item \textbf{Capítulo 2:} Especificación de requisitos. Este capítulo describe detalladamente os requisitos e criterios que debe cumprir o proxecto.
@@ -49,3 +55,17 @@ A presente memoria estrutúrase do seguinte xeito:
     \item \textbf{Capítulo 5:} Conclusións e posibles ampliacións. Neste último capítulo preséntanse as conclusións obtidas após realizar o proxecto,
     así como propostas de melloras sobre o mesmo ou posibles ampliacións futuras.
 \end{itemize}
+
+\section{Descrición do sistema}
+Como se explicou nos \hyperref[sec:obxectivos]{obxectivos do traballo}, o sistema que deseñemos terá como finalidade poder monitorizar a variabilidade e tendencia
+de diferentes parámetros, obtidos a través de datos de satélite, os cales se empregan para medir a contaminación do aire.
+
+Será preciso, por tanto, deseñar un módulo  mediante o cal poidamos descargar os datos de TROPOMI, obtidos a través da ESA, para poder traballar con eles, realizando
+as transformacións anteriormente mencionadas. Así, empregando as APIs proporcionadas, poderemos deseñar unha función que busque un determinado produto (por exemplo,
+$NO_{2}$) no catálogo de COPERNICUS, filtrando os resultados para centrarnos nun área de interese (neste caso, a Península Ibérica) e datas concretas. Construíndo unha
+query, e empregando a librería \texttt{requests}, descagaremos os arquivos para, posteriormente, transformalos. Ademais, os arquivos veñen en formato \texttt{.zip}, polo que será
+preciso, neste módulo, descomprimilos para poder obter os arquivos de formato \texttt{.nc} cos que debemos traballar. Este módulo será desenvolvido na linguaxe Python.
+
+Por outra parte, deseñaremos outro módulo, tamén en Python, no cal poidamos traballar cos arquivos descargados. Os datos que descargamos son de nivel 2, polo que temos que realizar
+operacións cos mesmos para transformalos en datos agregados por mes. Para isto, será preciso empregar \texttt{HARP}, unha ferramenta que permite ler e procesar datos de satélite,
+permitindo a inxesta de arquivos e o traballo cos mesmos.
