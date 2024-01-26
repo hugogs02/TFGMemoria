@@ -1,4 +1,40 @@
 \chapter{Especificación de Requisitos}
 
-Especificación dos requisitos máis relevantes do Sistema, xunto coa información que este debe almacenar e as interfaces
-con outros Sistemas, sexan hardware ou software, e outros requisitos (rendemento, seguridade, etc.).
+%Especificación dos requisitos máis relevantes do Sistema, xunto coa información que este debe almacenar e as interfaces
+%con outros Sistemas, sexan hardware ou software, e outros requisitos (rendemento, seguridade, etc.).
+
+Neste capítulo trataremos en profundidade os principais requisitos que debe cumplir o sistema e o traballo; isto é, as funcionalidades que se require que teña o sistema.
+Especificaremos os usuarios que empregarán o sistema, as funcionalidades que se lle atribúen a cada un e os compoñentes do sistema, así como os requisitos funcionais e non
+funcionais do mesmo.
+
+\section{Identificación dos usuarios}\label{usuarios}
+O obxectivo deste proxecto é proporcionar información de diferentes parámetros relacionados coa contaminación atmosférica, co obexectivo de poder realizar un seguimento de
+como evolucionou ó longo do tempo a contaminación en diferentes puntos da Península Ibérica. Temos, por tanto, un perfil de usuario claro: aquel que consultará os datos, ou
+usuario final [U1]. Por outra parte, identificaremos outro usuario, administrador [U2] que será o encargado de realizar o mantemento de todo o sistema, e que se encargará de arranxar os
+distintos problemas que poidan surxir co uso do mesmo.
+
+\begin{itemize}
+    \item O \textbf{usuario final ([U1])} é aquela persona á que vai dirixida principalmente o sistema, e que ten interese en poder monitorizar a evolución da contaminación por
+    diferentes parámetros ó longo do tempo. Trátase dun perfil de persoa variada, dende un científico, un traballador público que queira elaborar plans para a redución da contaminación
+    nas cidades, ou calquera cidadán con interese polo tema. Porén, as tarefas que se lle atribúen son sinxelas:
+    \begin{enumerate}
+        \item \textbf{Consultar o nivel de contaminación.} Este usuario consultará, na interface web do servidor en que se desenvolva o sistema, o valor dun parámetro en concreto, de entre
+        tódolos que estean dispoñibles, para un mes concreto.
+    \end{enumerate}
+    \item O \textbf{administrador do sistema [U2]} é a persoa que se encargará do mantemento do mesmo, monitorizando o funcionamento do servidor para que, en caso de que se produza algún
+    erro, poder solventalo. O rol de administrador do sistema asumiráo o alumno encargado de desenvolver este traballo. As súas principais tarefas serán:
+    \begin{enumerate}
+        \item \textbf{Configurar o sistema}. Este usuario será o encargado de realizar a configuración inicial do sistema, implementando os diferentes módulos que o compoñen
+        e descargando e procesando datos durante un periodo de tempo o suficientemente longo, que permita a correcta utilización do sistema.
+        \item \textbf{Monitorear o sistema}. Como administrador, deberá encargarse de monitorizar o correcto funcionamento do sistema, vixiando os posibles problemas que poidan xurdir no
+        mesmo. Especialmente, deberá facer énfase en controlar que, cada mes, se descarguen e procesen correctamente os arquivos correspondentes, para asegurar a máxima calidade nos datos
+        que consulte o usuario final.
+    \end{enumerate}
+\end{itemize}
+
+
+\section{Requisitos funcionais}
+
+\section{Requisitos do produto}
+
+\section{Requisitos de rendemento}

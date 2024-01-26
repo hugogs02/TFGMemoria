@@ -1,10 +1,9 @@
 \chapter{Introdución}\label{introducion}
 \hyphenation{In-te-re-se}
 
-Obxectivos Xerais, Relación da Documentación que conforma a Memoria,
-Descrición do Sistema, Información Adicional de Interese (métodos, técnicas ou
-arquitecturas utilizadas, xustificación da súa elección, etc.).
-\newline
+%Obxectivos Xerais, Relación da Documentación que conforma a Memoria,
+%Descrición do Sistema, Información Adicional de Interese (métodos, técnicas ou
+%arquitecturas utilizadas, xustificación da súa elección, etc.).
 
 O cambio climático é un asunto que, actualmente, está á orde do día. O aumento das temperaturas a nivel global é un asunto que preocupa non só ós
 científicos, senón tamén á poboación en xeral. As causas do cambio climático son moitas, pero podemos estar de acordo en que unha gran parte é
@@ -22,14 +21,9 @@ atmosférica. Desta forma, TROPOMI proporciona observacións de forma diaria de 
 e realizar predicións sobre a evolución da mesma, coma poden ser o metano ($CH_{4}$), monóxido de carbono ($CO$), formaldehído ($HCHO$), dióxido de nitróxeno
 ($NO_{2}$), ozono ($O_{3}$), aerosol ou dióxido de xofre ($SO_{2}$).
 
-Este satélite proporciona datos a dous niveis distintos:
-\begin{itemize}
-    \item Nivel 1 (L1): datos crus, que conteñen unicamente referencias temporais e información coma parámetros de xeoreferencias ou calibración.
-    \item Nivel 2 (L2): datos derivados dos de nivel 1, pero con variables xeofísicas derivadas na mesma resolución e ubicación
-\end{itemize}
-Existe outro nivel, o Nivel 3 (L3), no cal as variables están mapeadas en escalas cuadriculares, en espazo e tempo, uniformes e con consistencia.
-Será este o nivel que nos interese alcanzar nos nosos datos, para poder obter con eles un agregado mensual que nos permita ver a media ou crear climatoloxías
-para poder observar anomalías nos mesmos.
+Este satélite proporciona datos a dous niveis distintos: L1, con datos crus; e L2, con variables xeofísicas derivadas dos datos de nivel 1. Existe outro nivel,
+o Nivel 3 (L3), no cal as variables están mapeadas en escalas regulares. Será este o nivel que nos interese alcanzar nos nosos datos, para poder obter con eles
+un agregado mensual que nos permita ver a media ou crear climatoloxías para poder observar anomalías nos mesmos.
 
 O obxectivo deste traballo é, por tanto, empregar os datos que nos proporciona este satélite para, mediante a realización de diferentes operacións sobre
 os mesmos, poder facer un seguimento da evolución ó longo do tempo da contaminación en diversas cidades de España. Decidiuse escoller este ámbito debido
@@ -68,4 +62,21 @@ preciso, neste módulo, descomprimilos para poder obter os arquivos de formato \
 
 Por outra parte, deseñaremos outro módulo, tamén en Python, no cal poidamos traballar cos arquivos descargados. Os datos que descargamos son de nivel 2, polo que temos que realizar
 operacións cos mesmos para transformalos en datos agregados por mes. Para isto, será preciso empregar \texttt{HARP}, unha ferramenta que permite ler e procesar datos de satélite,
-permitindo a inxesta de arquivos e o traballo cos mesmos.
+permitindo a inxesta de arquivos e o traballo cos mesmos. Así, importaremos tódolos arquivos descargados e realizaremos as transformacións anteriormente citadas, para posteriomente
+exportar o resultado nun arquivo, tamén de formato \texttt{.nc}, nun directorio específico.
+
+Os datos transformados almacenaranse nun servidor ERDDAP, que empregaremos como middleware. Este servidor proporciona unha forma sinxela de acceder a datasets científicos en formatos
+de arquivos comúns, facilitando a xeración de gráficos e mapas. Unifica diferentes tipos de servidores con diferentes estruturas e devolve os datos nun formato de arquivo común, así
+como estandariza as datas entre os mesmos. Ademais, é posible configurar un servidor ERDDAP propio e empregar os nosos propios datos. Esta será a opción que elixamos, xa que nos permite
+empregar os datos que nós mesmos transformamos.
+
+Será preciso establecer, no servidor onde corra a aplicación, unha tarefa automática, para que, segundo se publiquen datos novos, estes estean dispoñibles na nosa aplicación. Esta tarefa
+deberá executarse tódolos meses, tendo en conta que os datos das medicións de satélite tardan uns días en estaren dispoñibles, e deberá descargar os datos dos parámetros que empregue a
+nosa aplicación, transformalos e almacenalos no directorio establecido.
+
+Por último, deseñaremos unha interface web empregando \texttt{leaflet}, unha libraría de código aberto de \texttt{JavaScript} que permite crear mapas web de forma sinxela. Isto
+permitirá consultar a evolución de cada un dos diferentes parámetros (escollendo un deles) ó longo do tempo.
+
+Todo isto implementarémolo nunha máquina de AWS, de forma que o sistema se administrará dende a mesma. Así, poderemos acceder á interface web de forma sinxela, a través de internet,
+e toda a xestión da aplicación estará tamén centralizada. Nesta máquina almacenaremos os datos transformados que obteñamos do módulo de Python, e nela teremos tamén o servidor ERDDAP
+co cal acceder a ditos datos. Accedendo á máquina poderemos visualizar a interface web que mencionamos.
