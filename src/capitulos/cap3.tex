@@ -6,20 +6,58 @@
 %produto desenvolvido, utilizando no posible representacións gráficas.
 Neste capítulo, explicaremos  os diferentes compoñentes que forman o sistema e as tecnoloxías empregadas, así como o proceso de desenvolvemento e implementación do mesmo.
 
-\section{Compoñentes do sistema}
+\section{Compoñentes do sistema}\label{componentes}
 No que respecta á arquitectura do sistema software desenvolvido, podemos identificar tres grandes compoñentes:
 \begin{itemize}
-    \item \textbf{Backend}
-
-    \item \textbf{Middleware}
-
-    \item \textbf{Frontend}
-
+    \item \textbf{Backend}. O backend da aplicación está formado polos diferentes scripts de Python que se encargan da descargar os datos, mediante a API, da web de COPERNICUS, da súa
+    descompresión, o procesamento e o almacenamento no directorio apropiado para que se poida acceder a eles. Ademais, cun script de Python e o ????¿¿¿¿?¿MÓDULO??? \texttt{cron} de Ubuntu,
+    definiremos unha tarefa a executarse automáticamente de forma mensual, de forma que, segundo teñamos dispoñibles novos datos, estes se descarguen e sexan accesibles ó usuario, para que
+    teña sempre os datos máis recentes.
+    \item \textbf{Middleware}. O middleware está formado polo servidor ERDDAP, que serve como unha capa intermedia entre o backend de Python e o frontend que verá o usuario final.
+    Ademais, como comentamos na \hyperref[descricion]{introdución}, proporciona unha forma sinxela de acceder a datasets científicos en formatos de arquivos comúns, facilitando a
+    xeración de gráficos e mapas. Coa implementación do noso propio servidor ERDDAP, poderemos almacenar nel, ademais dos datasets que xa veñen por defecto, uns cos nosos arquivos.
+    \item \textbf{Frontend}. O frontend desenvolverase empregando HTML e JavaScript. Será un frontend sinxelo, de forma que, cando se acceda á aplicación na URL do servidor, o usuario
+    vexa un mapa, acoutado á zona na que se realiza o estudo dos datos, e que poida elixir, por unha parte, un parámetro de entre os catro que se proporcionan, e un mes no rango de
+    meses dispoñibles no dataset, actualizándose a información de forma dinámica.
 \end{itemize}
 
-\section{Tecnoloxías empregadas}
-\subsection{Anaconda}
+\subsection{Backend}\label{backend}
+Como xa comentamos, o backend da aplicación desenvolveuse en Python. A elección desta linguaxe de programación para este módulo é sinxela: é a linguaxe de programación máis axeitada
+para traballar con grandes cantidades de datos. Ademais, \textbf{?¿?¿?¿?¿aqui comentar movidas de copernicus e api}.
 
-\section{Desenvolvemento do sistema}
+Así, o backend de Python divídese en catro scripts diferentes, cada un cunha funcionalidade determinada.
 
-\section{Implementación do sistema}
+\subsubsection{Script principal e automatización}\label
+Por unha parte, temos o script principal, \texttt{app.py}. Este é o script dende o que se executa ?¿?¿?¿?¿?¿. Nel, establécense os parámetros cos cales se executaran os módulos de
+descarga e procesado dos arquivos, comprobando tamén a súa validez (como, por exemplo, que a data de inicio da busca sexa anterior á data de fin).
+
+En segundo lugar, temos o script de descarga de datos.
+
+Por outra parte, temos o script que se encarga de procesar os datos. Nel, o módulo principal que empregamos é HARP que, como se explica en \ref{harp}, é unha ferramenta que permite a
+lectura e procesado de datos de satélite. Neste módulo temos diferentes funcións de procesado, unha para cada un dos diferentes parámetros que se ofrecen na aplicación, xa que as
+operacións deben personalizarse en función do POLLUTANT. Así, establécese unha función xenérica que, en función do parámetro que se estea tratando, invoca a unha función ou outra e,
+unha vez procesados tódolos arquivos e exportados os datos, elimina os arquivos que se descargaron, co obxectivo de optimizar o almacenamento do servidor (posto que estamos falando de
+centenares de arquivos cada mes, con tamaños de entre 500MB e 1GB, os cales, unha vez procesados, non son de interese nin utilidade).
+
+Malia que cada unha das funcións de procesado
+
+Por último, temos o script \texttt{auto.py}, o cal se encarga da automatización da descarga e procesado dos datos. Este será o script que executaremos con \texttt{cron} de forma mensual,
+para manter os datasets actualizados. Este script obtén, a partir da data actual, as datas para as que realizaremos a busca, que serán entre o primeiro e último día do mes anterior. Desta
+forma, executaremos o \textit{job} de \texttt{cron}, cunha frecuencia mensual, o día 10 de cada mes. Polo tanto, no caso da execución que se realizaría o día 10 de xaneiro de 2024, as
+datas que se tomarían como referencia serían o 1 de decembro de 2023 como data de inicio, e o 31 de decembro de 2023 como data de fin. Decidiuse elixir o décimo día de cada mes para
+a actualización dos datos debido a que, como se explica en \ref{}??¿¿¿?, o procesado dos arquivos resultantes das medicións dos satélites ten unha latencia de 5 días. Así, asegurámonos
+de que, cando se execute o script, tódolos arquivos que se deben ter en conta estarán dispoñibles.
+
+\subsection{Middleware}\label{middleware}
+
+\subsection{Frontend}\label{frontend}
+A descrición destes compoñentes, xunto coas funcionalidades que desenvolven cada un dos arquivos, explícase máis en detalle no anexo \ref{manuais}.
+
+\section{Tecnoloxías empregadas}\label{tecnoloxias}
+\subsection{Anaconda}\label{anaconda}
+
+\subsection{HARP}\label{harp}
+
+\section{Desenvolvemento do sistema}\label{desenvolvemento}
+
+\section{Implementación do sistema}\label{implementacion}
