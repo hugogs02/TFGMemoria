@@ -34,7 +34,31 @@ distintos problemas que poidan surxir co uso do mesmo.
 
 
 \section{Requisitos funcionais}
+\subsection{Obter datos de satélite da ESA [RF1]}\label{rf1}
+A aplicación que se desenvolva debe ser capaz de obter, de forma automática, os datos de satélite dispoñibles no dataspace de COPERNICUS,
+na web da Axencia Espacial Europea. Isto farase empregando unha API de entre aquelas que ofrece a propia ESA. Estes datos deberán limitarse
+a unha área xeográfica de interese, que no noso caso será a Península Ibérica, e a un rango de datas determinados.
+
+\subsection{Transformar e agregar datos de satélite [RF2]}\label{rf2}
+Os datos que se descarguen dende a web da ESA deberán ser transformados, de forma que serán agregados mensualmente para poder facer un
+seguemento da evolución da contaminación. Os arquivos resultantes deberán manter unicamente a información necesaria.
+
+\subsection{Implementar un servidor ERDDAP local [RF3]}\label{rf3}
+No servidor onde se implemente este sistema, implementarase un servidor ERDDAP local, de forma que se facilite o acceso ós datos. Deberase
+configurar un \textit{dataset} por cada un dos parámetros, e almacenar nel os diferentes arquivos.
+
+%\subsection{Obter datos de satélite de TROPOMI [RF4]}\label{rf4}
 
 \section{Requisitos do produto}
+\subsection{A aplicación deberá ser rápida e eficiente [RNF1]}\label{rnf1}
+A aplicación deberá ser capaz de, nun tempo razoable dende que estean dispoñibles, descargar e procesar os datos de satélite, de forma que
+os usuarios poidan acceder a estos datos o antes posible.
+
+\subsection{Eficiencia de almacenamento [RNF2]}\label{rnf2}
+A aplicación debe ser eficiente en canto ó uso do almacenamento se refire. Tendo en conta que, aproximadamente, cada mes se descagarán en torno
+a 50GB de novos datos por cada produto que se procese, e que após o procesamento teremos datos cun tamaño resultante darredor de 500MB por
+parámetro, é crucial que a aplicación almacene só os datos estritamente necesarios.
 
 \section{Requisitos de rendemento}
+\subsection{Tempo de resposta razoable [RNF3]}\label{rnf3}
+A aplicación debe ter un tempo de resposta razoable, de forma que os usuarios non deban agardar moito tempo para teren os resultados que desexan.

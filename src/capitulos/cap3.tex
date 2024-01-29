@@ -10,48 +10,83 @@ Neste capítulo, explicaremos  os diferentes compoñentes que forman o sistema e
 No que respecta á arquitectura do sistema software desenvolvido, podemos identificar tres grandes compoñentes:
 \begin{itemize}
     \item \textbf{Backend}. O backend da aplicación está formado polos diferentes scripts de Python que se encargan da descargar os datos, mediante a API, da web de COPERNICUS, da súa
-    descompresión, o procesamento e o almacenamento no directorio apropiado para que se poida acceder a eles. Ademais, cun script de Python e o ????¿¿¿¿?¿MÓDULO??? \texttt{cron} de Ubuntu,
+    descompresión, o procesamento e o almacenamento no directorio apropiado para que se poida acceder a eles. Ademais, cun script de Python e o programa  \texttt{cron} de Ubuntu,
     definiremos unha tarefa a executarse automáticamente de forma mensual, de forma que, segundo teñamos dispoñibles novos datos, estes se descarguen e sexan accesibles ó usuario, para que
     teña sempre os datos máis recentes.
     \item \textbf{Middleware}. O middleware está formado polo servidor ERDDAP, que serve como unha capa intermedia entre o backend de Python e o frontend que verá o usuario final.
     Ademais, como comentamos na \hyperref[descricion]{introdución}, proporciona unha forma sinxela de acceder a datasets científicos en formatos de arquivos comúns, facilitando a
     xeración de gráficos e mapas. Coa implementación do noso propio servidor ERDDAP, poderemos almacenar nel, ademais dos datasets que xa veñen por defecto, uns cos nosos arquivos.
-    \item \textbf{Frontend}. O frontend desenvolverase empregando HTML e JavaScript. Será un frontend sinxelo, de forma que, cando se acceda á aplicación na URL do servidor, o usuario
+    \item \textbf{Frontend}. O frontend desenvolverase empregando HTML. Será un frontend sinxelo, de forma que, cando se acceda á aplicación na URL do servidor, o usuario
     vexa un mapa, acoutado á zona na que se realiza o estudo dos datos, e que poida elixir, por unha parte, un parámetro de entre os catro que se proporcionan, e un mes no rango de
     meses dispoñibles no dataset, actualizándose a información de forma dinámica.
 \end{itemize}
 
 \subsection{Backend}\label{backend}
 Como xa comentamos, o backend da aplicación desenvolveuse en Python. A elección desta linguaxe de programación para este módulo é sinxela: é a linguaxe de programación máis axeitada
-para traballar con grandes cantidades de datos. Ademais, \textbf{?¿?¿?¿?¿aqui comentar movidas de copernicus e api}.
+para traballar con grandes cantidades de datos. Ademais, é a linguaxe que ten maior compatibilidade con tódalas ferramentas que deberemos empregar para o procesado dos datos, o que
+fai que sexa, practicamente, a única opción a ter en conta..
 
 Así, o backend de Python divídese en catro scripts diferentes, cada un cunha funcionalidade determinada.
 
-\subsubsection{Script principal e automatización}\label
-Por unha parte, temos o script principal, \texttt{app.py}. Este é o script dende o que se executa ?¿?¿?¿?¿?¿. Nel, establécense os parámetros cos cales se executaran os módulos de
-descarga e procesado dos arquivos, comprobando tamén a súa validez (como, por exemplo, que a data de inicio da busca sexa anterior á data de fin).
+\subsubsection{Script principal e automatización}\label{app}
+Por unha parte, temos o script principal, \texttt{app.py}. Este é o script dende o que se executa o programa. Nel, establécense os parámetros cos cales se executaran os módulos de
+descarga e procesado dos arquivos, comprobando tamén a súa validez (como, por exemplo, que a data de inicio da busca sexa anterior á data de fin). Pódese executar tanto por liña de comandos
+coma importando o arquivo e chamando á función.
 
-En segundo lugar, temos o script de descarga de datos.
-
-Por outra parte, temos o script que se encarga de procesar os datos. Nel, o módulo principal que empregamos é HARP que, como se explica en \ref{harp}, é unha ferramenta que permite a
-lectura e procesado de datos de satélite. Neste módulo temos diferentes funcións de procesado, unha para cada un dos diferentes parámetros que se ofrecen na aplicación, xa que as
-operacións deben personalizarse en función do POLLUTANT. Así, establécese unha función xenérica que, en función do parámetro que se estea tratando, invoca a unha función ou outra e,
-unha vez procesados tódolos arquivos e exportados os datos, elimina os arquivos que se descargaron, co obxectivo de optimizar o almacenamento do servidor (posto que estamos falando de
-centenares de arquivos cada mes, con tamaños de entre 500MB e 1GB, os cales, unha vez procesados, non son de interese nin utilidade).
-
-Malia que cada unha das funcións de procesado
-
-Por último, temos o script \texttt{auto.py}, o cal se encarga da automatización da descarga e procesado dos datos. Este será o script que executaremos con \texttt{cron} de forma mensual,
+Por outra parte, temos o script \texttt{auto.py}, o cal se encarga da automatización da descarga e procesado dos datos. Este será o script que executaremos con \texttt{cron} de forma mensual,
 para manter os datasets actualizados. Este script obtén, a partir da data actual, as datas para as que realizaremos a busca, que serán entre o primeiro e último día do mes anterior. Desta
 forma, executaremos o \textit{job} de \texttt{cron}, cunha frecuencia mensual, o día 10 de cada mes. Polo tanto, no caso da execución que se realizaría o día 10 de xaneiro de 2024, as
 datas que se tomarían como referencia serían o 1 de decembro de 2023 como data de inicio, e o 31 de decembro de 2023 como data de fin. Decidiuse elixir o décimo día de cada mes para
-a actualización dos datos debido a que, como se explica en \ref{}??¿¿¿?, o procesado dos arquivos resultantes das medicións dos satélites ten unha latencia de 5 días. Así, asegurámonos
+a actualización dos datos debido a que, como se explica en \cite{s5pdata}, o procesado dos arquivos resultantes das medicións dos satélites ten unha latencia de 5 días. Así, asegurámonos
 de que, cando se execute o script, tódolos arquivos que se deben ter en conta estarán dispoñibles.
 
+
+\subsubsection{Script de descarga de datos}\label{descarga}
+En segundo lugar, temos o script de descarga de datos. A súa función principal é \texttt{obtenArquivos}, que recibe como parámetros a area de interese da busca, as datas de inicio e de fin, o parámetro
+para o que se realizará a busca e o directorio onde se almacenarán os arquivos. Se este directorio non existe, creao. A continuación, empregando a API de oData, realiza unha consulta para obter os
+arquivos que se descargarán. Iterando por estes arquivos, obten o seu Id e o nome e, se estos non existen (tanto en formato zip, por estaren comprimidos, ou en formado zip, por estaren
+descomprimidos), realiza a súa descarga, na función \texttt{descargaArquivo}. Posteriormente, descomprime o arquivo coa función \texttt{descomprimeArquivo}, os cales quedan dentro dunha carpeta co seu
+nome. Por tanto, unha vez descargados e descomprimidos tódolos arquivos, móveos á carpeta principal e elimina tódalas subcarpetas.
+
+No que respecta á función de descarga de arquivos, en primeiro lugar chama a unha función para obter o token de autorización preciso para descargar os datos. A continuación, crea a url para a
+descarga e, mediante a libraría Session, descarga o arquivo, sempre que a resposta do servidor sexa positiva. Por outra parte, a función de descompresión dos arquivos comproba, en primeiro lugar,
+que o ficheiro zip exista. Se é así, empregando a libraría zipfile, extrae os arquivos no directorio (imprimindo unha mensaxe de erro en caso de que o arquivo sexa inválido) e, unha vez feito, bórrao.
+
+\subsubsection{Script de procesado de datos}\label{procesado}
+Por último, temos o script que se encarga de procesar os datos. Nel, o módulo principal que empregamos é HARP que, como se explica en \ref{harp}, é unha ferramenta que permite a
+lectura e procesado de datos de satélite. Neste módulo temos diferentes funcións de procesado, unha para cada un dos diferentes parámetros que se ofrecen na aplicación, xa que as
+operacións deben personalizarse en función do parámetro. Así, establécese unha función xenérica que, en función do parámetro que se estea tratando, invoca a unha función ou outra e,
+unha vez procesados tódolos arquivos e exportados os datos, elimina os arquivos que se descargaron, co obxectivo de optimizar o almacenamento do servidor (posto que estamos falando de
+centenares de arquivos cada mes, con tamaños de entre 500MB e 1GB, os cales, unha vez procesados, non son de interese nin utilidade). Ademais, temos unha función denominada \texttt{obtenListaProdutos}
+, para obter os arquivos a procesar.
+
+Malia que cada unha das funcións de procesado son bastante semellantes, posto que realizan unha serie de operación similares entre elas, foi preciso particularizalas, xa que o nome das variables
+que exportaremos difire en función do parámetro. Estas funcións reciben unha lista de arquivos a procesar e un directorio onde almacenar o arquivo final procesado. Empregando a función \texttt{
+    import\_product} de harp, importamos os arquivos, realizando con eles unha serie de operacións para filtrar os datos segundo a súa calidade, como se indica nos diferentes manuais. Unha vez temos
+tódolos produtos importados, realizamos unha serie de operacións, propias para cada produto, para quedarnos cos datos en determinadas lonxitudes e obter con eles unha cuadrícula; e unha serie de
+post-operacións, que son globais a tódalas funcións, para realizar a agregación dos datos. A continuación, definimos o nome do arquivo a exportar (que segue o patrón parametro\_AAAAMM.nc), e
+gardámolo.
+
 \subsection{Middleware}\label{middleware}
+O middleware que empregamos será ERDDAP. Isto é un servidor de datos que proporciona unha forma simple e consistente de acceder e descargar múltiples datasets científicos, de diferentes fontes, nun
+formato común, facilitando a elaboración de gráficos e mapas \cite{erddaphome}. Ademais, permite obter os datos en diversos formatos de arquivo, ademais de proporcionar funcións para estandarizar
+as datas dos resultados ou proporcionar os mesmos en formatos de imaxe personalizados. A instalación de ERDDAP de referencia é aquela feita pola National Oceanic and Atmospheric Administration (
+NOAA, Oficina Nacional de Administración Oceánica e Atmosférica) que, ademais de ter máis de 200 datasets, permite crear un servidor local para almacenar nel datos propios.
+
+Para realizar esta instalación, só será necesario seguir os pasos que se indican en \cite{erddapsetup}, o que explicaremos máis detalladamente en \ref{desenvolvemento} e \ref{implementacion}. En
+resumo, é preciso:
+\begin{enumerate}
+    \item Dispoñer dunha versión de Java 17.
+    \item Configurar Tomcat.
+    \item Descargar os arquivos de configuración de ERDDAP e realizar os cambios precisos para adaptalo ó sistema.
+    \item Instalar o arquivo \texttt{.war} de ERDDAP.
+    \item Iniciar o servidor e configurar os datasets que queremos que sexan visibles no mesmo.
+\end{enumerate}
 
 \subsection{Frontend}\label{frontend}
-A descrición destes compoñentes, xunto coas funcionalidades que desenvolven cada un dos arquivos, explícase máis en detalle no anexo \ref{manuais}.
+Para o frontend do proxecto, crearemos unha aplicación sinxela en Tomcat, empregando HTML. Facendo uso da funcionalidade que nos proporciona ERDDAP para xerar imaxes a partir dos datos, crearemos
+unha interface na que teñamos, por unha parte, un mapa cos datos que queiramos visualizar e, por outra parte, dous selectores, un para seleccioanr o parámetro a consultar e outro para seleccionar
+o mes e ano.
 
 \section{Tecnoloxías empregadas}\label{tecnoloxias}
 \subsection{Anaconda}\label{anaconda}
@@ -59,5 +94,38 @@ A descrición destes compoñentes, xunto coas funcionalidades que desenvolven ca
 \subsection{HARP}\label{harp}
 
 \section{Desenvolvemento do sistema}\label{desenvolvemento}
+\subsection{Introdución}
+Para poder comezar a desenvolver o sistema, primeiro foi preciso realizar unha introdución á detección mediante satélite de diferentes datos e ó funcionamento dos satélites de TROPOMI. Para isto,
+foi de utilidade o seminario dispoñible en \cite{ARSETformation}, de monitorización de alta resolución de $NO_2$ dende o espacio con TROPOMI. Nel, explícase o funcionamento básico dos satélites e
+como miden e procesan os datos. Tamén se explican os diferentes niveis de datos que existen, como mencionamos na \hyperref[introducion]{introdución}. Dipoñemos de 4 niveis principais de datos:
+\begin{enumerate}
+    \item \textbf{Nivel 0 (L0):} estes datos son datos crus, tal e como se obteñen das medicións do satélite, a máxima resolución.
+    \item \textbf{Nivel 1 (L1):} son os datos de nivel L0, pero con referencias temporais e información dos sensores empregados para as medicións, coma coeficientes de calibración radiometrica e
+    xeometrica.
+    \item \textbf{Nivel 2 (L2):} os datos de nivel L1, pero con variables xeofísicas derivadas na mesma resolución e ubicación que os datos de nivel 1.
+    \item \textbf{Nivel 3 (L3):} as variables obtidas dos datos de nivel L2, mapeadas en forma de cuadrículas espazo-temporais, completas e con consistencia.
+\end{enumerate}
+
+Empregar datos de nivel L3 ten diversas vantaxes:
+\begin{itemize}
+    \item Podemos dispoñer dun único arquivo por día (ou por mes, ou o período de tempo que nos interese). Polas características do satélite, o seu ciclo orbital é de 16 días, realizando 14 órbitas
+    por día \cite{s5porbit}. Polo tanto, para dous días distintos, é posible que un arquivo non cubra a totalidade da área de interese. Ó realizar as operacións de agregación dos datos, aseguramos
+    ter un único arquivo por día, facendo a manipulación dos datos moito máis sinxela.
+    \item Datos dispostos en cuadrículas uniformes. Coa agregación dos datos, podemos crear tamén unha cuadrícula para os mesmos, dispoñéndoos de forma regular no mapa ou área que nos interese
+    estudar.
+    \item Arquivos de menor tamaño. Os arquivos de nivel L2 conteñen unha maior cantidade de datos, unha gran parte dos cales pode non ser relevante para o noso sistema. O seu procesamento a nivel
+    L3 permite elimar estos datos e variables innecesarias, minguando o tamaño dos arquivos.
+    \item Maior calidade nos datos. Nos diferentes manuais dos produtos, establécense diversos criterios de calidade asociados ós datos, que podemos empregar para descartar medicións de certas
+    áreas pequenas do espazo en caso de que non teñan unha calidade suficiente. Desta forma, ó procesar os datos, podemos eliminar estas medicións de menor calidade e, como crearemos agregados por
+    grandes períodos de tempo, evitaremos que queden vacíos.
+\end{itemize}
+
+O satélite SENTINEL 5P proporciona datos de seis parámetros moi relacionados coa contaminación atmosférica: ozono ($O_3$), tanto a columna troposférica (aquela que se forma en capas mais altas da
+atmosfera) coma a columna total; dióxido de nitróxeno ($NO_2$), tanto a columna troposférica coma a total; dióxido de xofre ($SO_2$), a columna total; monóxido de carbono ($CO$), a columna total;
+metano ($CH_4$), a columna total; e formaldehido ($HCHO$), a columna total. Tratar todos estes parámetros era difícil de abordar, polo que foi preciso descartar dous deles para non telos en conta.
+Baseándonos na información dispoñible en \cite{airpollutants}, decidimos elixir os seguintes: $NO_2$, $CO$, $SO_2$ e $O_3$. Escolléronse estes parámetros por seren os que máis problemas de saúde
+adoitan causar, ademais de por empregárense máis a miúdo nos diferentes mapas de contaminación.
+
+
 
 \section{Implementación do sistema}\label{implementacion}

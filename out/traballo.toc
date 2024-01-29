@@ -6,21 +6,30 @@
 \contentsline {chapter}{\numberline {2}Especificación de Requisitos}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Identificación dos usuarios}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Requisitos funcionais}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Requisitos do produto}{6}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Requisitos de rendemento}{6}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Deseño}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Compoñentes do sistema}{7}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Backend}{8}{subsection.3.1.1}%
-\contentsline {subsubsection}{Script principal e automatización}{8}{section*.6}%
-\contentsline {subsection}{\numberline {3.1.2}Middleware}{9}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Frontend}{9}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Tecnoloxías empregadas}{9}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Anaconda}{9}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}HARP}{9}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Desenvolvemento do sistema}{9}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Implementación do sistema}{9}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Probas}{11}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{13}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Manuais técnicos}{15}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Manuais de usuario}{17}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{19}{appendix.Alph2}%
+\contentsline {subsection}{\numberline {2.2.1}Obter datos de satélite da ESA [RF1]}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Transformar e agregar datos de satélite [RF2]}{6}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Implementar un servidor ERDDAP local [RF3]}{6}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Requisitos do produto}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}A aplicación deberá ser rápida e eficiente [RNF1]}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Eficiencia de almacenamento [RNF2]}{7}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Requisitos de rendemento}{7}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Tempo de resposta razoable [RNF3]}{7}{subsection.2.4.1}%
+\contentsline {chapter}{\numberline {3}Deseño}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Compoñentes do sistema}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Backend}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{Script principal e automatización}{10}{section*.6}%
+\contentsline {subsubsection}{Script de descarga de datos}{10}{section*.7}%
+\contentsline {subsubsection}{Script de procesado de datos}{11}{section*.8}%
+\contentsline {subsection}{\numberline {3.1.2}Middleware}{12}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Frontend}{12}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Tecnoloxías empregadas}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Anaconda}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}HARP}{13}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Desenvolvemento do sistema}{13}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Introdución}{13}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Implementación do sistema}{14}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Probas}{15}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{17}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Manuais técnicos}{19}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Manuais de usuario}{21}{appendix.Alph2}%
+\contentsline {chapter}{Bibliografía}{23}{appendix.Alph2}%

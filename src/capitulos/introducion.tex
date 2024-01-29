@@ -74,8 +74,7 @@ Será preciso establecer, no servidor onde corra a aplicación, unha tarefa auto
 deberá executarse tódolos meses, tendo en conta que os datos das medicións de satélite tardan uns días en estaren dispoñibles, e deberá descargar os datos dos parámetros que empregue a
 nosa aplicación, transformalos e almacenalos no directorio establecido.
 
-Por último, deseñaremos unha interface web empregando \texttt{leaflet}, unha libraría de código aberto de \texttt{JavaScript} que permite crear mapas web de forma sinxela. Isto
-permitirá consultar a evolución de cada un dos diferentes parámetros (escollendo un deles) ó longo do tempo.
+Por último, deseñaremos unha interface web que permitirá consultar a evolución de cada un dos diferentes parámetros (escollendo un deles) ó longo do tempo.
 
 Todo isto implementarémolo nunha máquina de AWS, de forma que o sistema se administrará dende a mesma. Así, poderemos acceder á interface web de forma sinxela, a través de internet,
 e toda a xestión da aplicación estará tamén centralizada. Nesta máquina almacenaremos os datos transformados que obteñamos do módulo de Python, e nela teremos tamén o servidor ERDDAP
