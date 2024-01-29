@@ -330,14 +330,47 @@ ERDDAP e a aplicación web.
 Unha vez que temos a máquina funcionando, podemos instalar todo o software que será preciso para executar a aplicación. En primeiro lugar, instalamos Anaconda, unha distribución de Python que
 simplifica a xestión e instalación de paquetes. A súa instalación é moi sinxela, pois só é preciso descargar o instalador para ubuntu e executalo, seguindo os pasos que indica. Unha vez instalado
 Anaconda, crearásenos un entorno, que será dende o cal descarguemos os paquetes e executemos a aplicación. A lista de paquetes completa atópase no anexo \ref{manuais}. A continuación, debemos
-instalar Java, na versión 17. Debemos empregar esta versión, ou superior, para poder configurar correctamente o servidor ERDDAP.
+instalar Java, na versión 17. Debemos empregar esta versión, ou superior, para poder configurar correctamente o servidor ERDDAP. Tamén deberemos instalar \texttt{nodejs}, xunto con \texttt{npm} (o
+xestor de paquetes de nodejs), para poder executar a interface web.
 
 O seguinte paso será instalar e configurar Tomcat. Debemos crear un usuario específico, \texttt{tomcat}, sen privilexios, para facer máis segura a instalación. Posteriormente, descargamos e
 extraemos o \textit{core build} de Tomcat nun directorio (que, no noso caso, será \texttt{/opt/tomcat}), sobre o cal podemos conceder permisos ó usuario tomcat. Tamén debemos configurar os
-administradores, para poder acceder ás páxinas de \textit{manager} e \texit{host-manager}.
+administradores, para poder acceder ás páxinas de \textit{manager} e \textit{host-manager}. O último paso será crear un servizo en \texttt{systemd}, para que Tomcat poida executarse en segundo plano.
+Nel, configuraremos as variables de entorno coma JAVA\_HOME, JAVA\_OPTS, CATALINA\_BASE e CATALINA\_HOME. Recargamos systemd e xa poderemos iniciar o servizo de Tomcat, o cal permitiremos que se
+execute co inicio do sistema. Por último, debido a que Tomcat emprega o porto 8080, debemos permitir o tráfico nese porto tamén dende a máquina, empregando o comando \texttt{sudo ufw allow 8080}.
+
+Neste punto, empregando os scripts que deseñamos en \ref{desenvolvemento}, executamos o módulo principal (\texttt{app.py}), decargando os datos para os catro parámetros que teremos dispoñibles para
+un período de tempo razonable. No noso caso, decidimos descargar tódolos datos do ano 2023, dende xaneiro ata decembro. Posteriormente, este rango temporal poderase ampliar.
+
+Finalmente, con Tomcat executándose e os datos dispoñibles no servidor, podemos comezar coa configuración do servidor ERDDAP.
 
 
 \subsection{Configuración de servidor ERDDAP}\label{erddapconf}
+Antes de comezar a instalar o servidor ERDDAP, debemos facer perquenos cambios nos arquivos de configuración de Tomcat. No arquivo \texttt{server.xml} (\textit{/opt/tomcat/conf/server.xml}),
+debemos cambiar o valor do parámetro \texttt{connectionTimeout} dentro da etiqueta $<Connector>$ do porto 8080. No arquivo \texttt{context.xml} (\textit{opt/tomcat/conf/context.xml}), debemos
+cambiar o valor de \texttt{cacheMaxSize} da etiqueta $<Resources>$ a 80000.
+
+A continuacion, debemos descargar dende un repositorio de GitHub, proporcionado en \cite{erddapsetup}, un arquivo zip cos arquivos de configuración de ERDDAP. Debemos descomprimir este arquivo na 
+carpeta de Tomcat, creando o directorio \textit{/opt/tomcat/content/erddap}. Dentro dos arquivos desta carpeta, atopamos \texttt{setup.xml}, o arquivo coa configuración que especifica como se
+comporta o servidor ERDDAP. Nel, debemos cambiar: $<bigParentDirectory>$, que no noso caso establecemos como \textit{/home/ubuntu/erddap/}; $<baseURL$, que é a URL dende a que se accederá ó servidor;
+$<emailEverythingTo>$, que é a dirección de correo á que se envían mensaxes de erro; e tódolos campos con etiquetas $<email*>$ e $<admin*$, con información relativa ó administrador do sistema (por
+exemplo, $<adminIndividualName>$, co noso nome; $<adminCity>$, coa cidade; ou $<adminEmail>$, co noso email).
+
+Con isto listo, podemos instalar o arquivo war de ERDDAP. Para isto, podemos descargalo directamente dende a URL que se indica en \cite{erddapsetup}, descargándoo directamente no directorio \textit{/opt/tomcat/webapps}.
+Con isto, teríamos configurado xa o servidor ERDDAP cunha instalación básica, con tódolos datasets que veñen por defecto. Este está accesible na url \url{http://13.53.65.240:8080/erddap/index.html} .
+Para poder incluír os nosos propios datasets, deberemos modificar o arquivo \textit{/opt/tomcat/content/erddap/datasets.xml}, seguindo os consellos que se indican en \cite{erddapdatasets}. Os
+creadores de ERDDAP proporcionan, ademais, unha ferramenta denominada \texttt{GenerateDatasetsXml}, o cal permite facilitar este proceso.
+
+Para cada datasets, crearemos unha etiqueta $<dataset>$, na cal configuraremos parámetros coma o \textit{type} (EDDGridFromNcFiles), o \textit{datasetId}, o seu estado (\textit{active=true} ou \textit{active=false}),
+cada canto se recarga e se actualiza ($<reloadEveryNMinutes>$, que estableceremos a 10080 (7 días); e \break$<updateEveryNMillis>$, que será 60000 (1 minuto)), o directorio onde se atopan os
+arquivos (no caso de, por exemplo, o monóxido de carbono, será \textit{/home/ubuntu/TFG/data/CO/}), ou a expresión regular no nome dos arquivos (que é \textit{.*\textbackslash.nc}) . Podemos
+engadir atributos, coma o nome título do dataset, un resumo dos datos que ten ou as variables do mesmo. Tamén engadiremos tres \texttt{axisVariable}: unha para o tempo, que podemos derivar do nome
+do arquivo, xa que este é unha expresión regular; a latitude, que se obtén directamente do arquivo; e a lonxitude, que tamén se obtén do arquivo. Por último, engadiremos unha \texttt{dataVariable}, que
+será a variable que se mostrará no mapa. Engadirémoslle atributos coma o tipo de dato (\textit{double}), o nome, o valor mínimo e o valor máximo. A configuración completa do arquivo datasets.xml
+está no anexo \ref{manuais}.
 
 
 \subsection{Realización da interface}\label{interface}
+Para crear a interface, crearemos unha aplicación nova en Tomcat, para illala do servidor ERDDAP. Crearemos unha nova carpeta no directorio \textit{/opt/tomcat/webapps}, denominada TROPOMIVisor.
+Este será o nome da aplicación, que teremos que poñer na URL para acceder á mesma. Desta forma, a url para acceder á aplicación sería \url{http://13.53.65.240:8080/TROPOMIVisor/}
+O deseño da interface será sinxelo, xa que ERDDAP permite acceder a un gráfico dos datos mediante unha URL específica. Por tanto

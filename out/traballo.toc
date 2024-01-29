@@ -35,10 +35,10 @@
 \contentsline {subsubsection}{Transformación dos datos de $SO_2$}{20}{section*.12}%
 \contentsline {section}{\numberline {3.4}Implementación do sistema}{21}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Configuración da máquina de AWS}{21}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Configuración de servidor ERDDAP}{22}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Realización da interface}{22}{subsection.3.4.3}%
-\contentsline {chapter}{\numberline {4}Probas}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{25}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Manuais técnicos}{27}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Manuais de usuario}{29}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{31}{appendix.Alph2}%
+\contentsline {subsection}{\numberline {3.4.2}Configuración de servidor ERDDAP}{23}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Realización da interface}{24}{subsection.3.4.3}%
+\contentsline {chapter}{\numberline {4}Probas}{25}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{27}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Manuais técnicos}{29}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Manuais de usuario}{31}{appendix.Alph2}%
+\contentsline {chapter}{Bibliografía}{33}{appendix.Alph2}%
