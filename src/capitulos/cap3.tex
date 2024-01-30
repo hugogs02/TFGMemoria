@@ -89,8 +89,21 @@ o mes e ano.
 
 \section{Tecnoloxías empregadas}\label{tecnoloxias}
 \subsection{Anaconda}\label{anaconda}
+Anaconda é unha distribución de Python, que simplifica a xestión e instalación de paquetes. Isto permitiu unha instalación rápida de Python, así coma dos diferentes paquetes empregados. A versión
+de Python que empregamos é \texttt{Python 3.11.6}. Entre os principais paquetes que se instalaron están: \texttt{os}, para empregar funcionalidades do sistema operativo; \texttt{shutil}, para
+traballar con arquivos; \texttt{requests}, para poder realizar peticións HTTP de forma sinxela; \texttt{zipfile}, para traballar cos arquivos zip; \texttt{pandas}, para manexar datasets; ou \texttt{harp},
+para empregar as funcións de HARP que mencionaremos en \ref{harp}.
 
 \subsection{HARP}\label{harp}
+HARP é unha ferramenta para ler, procesar e comparar datos de satélite. Ademais de ferramentas para executarse por liña de comando, tamén contén unha interface de Python moi sinxela de usar. Esta
+ferramenta permite preprocesar diferentes datasets de forma que poidamos facer que teñan a mesma cuadrícula espacio-temporal, o mesmo formato de datos ou a mesma estrutura. Para empregala,
+deberemos importar os produtos que queiramos transformar, aplicando diferentes operacións para filtrar os datos en base á súa calidade, excluír certas variables, transformalos a cuadrículas
+regulares, etc.
+
+\subsection{ERDDAP}
+Como comentamos en \ref{middleware}, ERDDAP é un servidor de datos que nos permite acceder de forma sinxela a múltiples datasets científicos, tanto dispoñibles na rede como localmente, facilitando
+a elaboración de diferentes gráficos. Será esta a funcionalidade que empreguemos para elaborar a interface da aplicación, coa cal interactuarán os usuarios.
+
 
 \section{Desenvolvemento do sistema}\label{desenvolvemento}
 \subsection{Introdución}
@@ -340,7 +353,11 @@ Nel, configuraremos as variables de entorno coma JAVA\_HOME, JAVA\_OPTS, CATALIN
 execute co inicio do sistema. Por último, debido a que Tomcat emprega o porto 8080, debemos permitir o tráfico nese porto tamén dende a máquina, empregando o comando \texttt{sudo ufw allow 8080}.
 
 Neste punto, empregando os scripts que deseñamos en \ref{desenvolvemento}, executamos o módulo principal (\texttt{app.py}), decargando os datos para os catro parámetros que teremos dispoñibles para
-un período de tempo razonable. No noso caso, decidimos descargar tódolos datos do ano 2023, dende xaneiro ata decembro. Posteriormente, este rango temporal poderase ampliar.
+un período de tempo razonable. No noso caso, decidimos descargar tódolos datos do ano 2023, dende xaneiro ata decembro. Posteriormente, este rango temporal poderase ampliar. Configuraremos tamén
+cron, para poder executar o script de forma periódica. Como comentamos en \ref{app}, deseñamos un script que, cando se executa, obtén as datas de inicio e fin coma o primeiro e último día do mes
+anterior, e descarga o produto. Este será o script que empregaremos no job de cron. Executando \texttt{crontab -e}, poderemos ver tódolos \textit{jobs activos}, así como definir novos. O que
+definiremos terá a seguinte estrutura: \texttt{0 1 10 * * /home/ubuntu/anaconda3/bin/python /home/ubuntu/TFG/auto.py \break \&> /home/ubuntu/TFG/pylogs.txt} . Isto executará, o día 10 de cada mes,
+á 01:00, o script auto.py, e redirixe o \texttt{stdout} e \texttt{stderr} ó arquivo pylogs.txt, para que o administrador o poida consultar e comprobar a correcta execución.
 
 Finalmente, con Tomcat executándose e os datos dispoñibles no servidor, podemos comezar coa configuración do servidor ERDDAP.
 
@@ -373,4 +390,11 @@ está no anexo \ref{manuais}.
 \subsection{Realización da interface}\label{interface}
 Para crear a interface, crearemos unha aplicación nova en Tomcat, para illala do servidor ERDDAP. Crearemos unha nova carpeta no directorio \textit{/opt/tomcat/webapps}, denominada TROPOMIVisor.
 Este será o nome da aplicación, que teremos que poñer na URL para acceder á mesma. Desta forma, a url para acceder á aplicación sería \url{http://13.53.65.240:8080/TROPOMIVisor/}
-O deseño da interface será sinxelo, xa que ERDDAP permite acceder a un gráfico dos datos mediante unha URL específica. Por tanto
+O deseño da interface será sinxelo, xa que ERDDAP permite acceder a un gráfico dos datos mediante unha URL específica. Por tanto, faremos uso desta función para o deseño. No corpo do código HTML
+estableceremos un selector con catro opcións, unha por cada un dos parámetros. Tamén estableceremos un \texttt{input} de tipo month, para poder seleccionar o mes e ano, que comece no primeiro mes
+do cal temos datos (xaneiro de 2023). Todo isto meterémolo dentro dun contedor, para que se posicionen xuntos. Definiremos tamén unha imaxe, a cal situaremos centrada na páxina, e co \textit{source}
+por defecto coma unha imaxe do mapa de monóxido de carbono, que se actualizará automáticamente mediante código de JavaScript.
+
+Coa etiqueta $<script>$, introduciremos o código de JavaScript. Definiremos unha función actualizar, na cal obteremos o valor dos selectores, para poder obter os parámetros que son precisos para
+parametrizar a query. Con isto, cambiaremos o \textit{source} da imaxe, para que se poida actualizar. Engadiremos un \texttt{eventListener} ós selectores, que se actualice cando se produza algún
+cambio, chamando á función actualizar.

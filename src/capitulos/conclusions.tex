@@ -1,4 +1,31 @@
 \chapter{Conclusións e posibles ampliacións}
+O obxectivo principal deste traballo era deseñar un sistema para a monitorización da variabilidade e tendencia de diferentes parámetros empregados para medir a contaminación do aire, con datos
+obtidos mediante medicións de satélite. Así, buscábase aproveitar os datos dispoñibles na web de COPERNICUS para traballar con eles, creando agregados mensuais, de forma que os usuarios os puideran
+empregar para seguir a evolución da contaminación atmosférica.
 
-%O traballo describe o grao de cumprimento dos obxectivos. Posibles vías de mellora.
+Este sistema ofrece a posibilidade de consultar, para a Península Ibérica, os valores de catro parámetros diferentes ó longo do ano 2023. Estes parámetros son o monóxido de carbono ($CO$), o ozono
+($O_3$), o dióxido de nitróxeno ($NO_2$) e o dióxido de xofre ($SO_2$). Mediante unha interface sinxela, podemos visualizar nun mapa o valor destes parámetros, que se mapearon a unha cuadrícula
+regular que abarca toda a área de interese.
 
+O usuario ten, desta forma, fácil acceso ós datos de satélite, podendo visualizar os mesmos dunha forma sinxela. Posto que os arquivos individuais de cada un dos parámetros teñen un gran tamaño,
+mediante a agregación dos mesmos de forma mensual podemos reducir drasticamente as necesidades de almacenamento, o cal resulta realmente beneficioso tendo en conta que, para un ano, poderiamos
+estar falando de cantidades en torno a 300GB de datos para cada parámetro por ano, mentres que o noso sistema precisa menos de 1GB por parámetro.
+
+Para rematar, propóñense unha serie de melloras que se poderían aplicar ó sistema para facelo máis completo e adaptable ás necesidades dos usuarios:
+\begin{enumerate}
+    \item \textbf{Maior dispoñibilidade de datos}. Os parámetros dispoñibles no dataspace de COPERNICUS inclúen, ademais dos analizados neste traballo, o metano ($CH_4$), formaldehído ($HCHO$), a
+    fracción de nubes ou o índice UV. Estes parámetros tiveron que descartarse do proxecto por falta de tempo, polo que podería ser interesante incluílos en ampliacións futuras. Asimesmo, os datos
+    están dispoñibles dende mediados do ano 2018, polo que tamén sería factible ampliar a dispoñibilidade temporal dos mesmos, que actualmente é dende xaneiro de 2023 ó presente. Tamén se podería
+    ampliar a área de análise dos datos a todo o continente europeo, ou incluso a todo o mundo
+    \item \textbf{Capacidade de automatización}. Podería ser útil integrar utilidades de automatización no sistema, de forma que os usuarios puideran recibir, de forma automática, algúns gráficos
+    que eles mesmos elixan segundo teñamos novos produtos dispoñibles, para facilitármoslles a análise dos mesmos.
+    \item \textbf{Mellora da experiencia e interface de usuario}. Unha forma de mellora da interface de usuario sería crear unha interface de JavaScript empregando leaflet. Isto non puido levarse a
+    cabo neste proxecto, pero podería ser práctico en caso de aumentar tamén a dispoñibilidade de datos, xa que nos permite unha maior interacción cos mapas. Tamén poderían implementarse
+    visualizacións en forma de gráficos 3D.
+    \item \textbf{Integración con Machine Learning}. Como un campo que está actualmente en auxe, o machine learning resulta especialmente relevante no ámbito da monitorización ambiental, xa que nos
+    permitiría, a partir dos datos dos que dispoñemos, identificar patróns nos mesmos co obxectivo de elaborar predicións. Desta forma, poderíamos crear, por exemplo, agregacións semanais no canto
+    de mensuais, o que nos permitiría dispoñer de información máis pormenorizada e realizar mellores análises. Isto podería empregars en colaboración con diferentes cidades, para saberen cando
+    activar, por exemplo, os seus plans anticontaminación.
+    \item \textbf{Análises estatísticos}. Por último, proponse a incorporación de ferramentas estatísticas para mellorar a experiencia dos usuarios á hora de analizar os datos. Por exemplo, poder
+    ían implemantarse algoritmos para a detección de anomalías, ou para realizar directamente análises temporais e seguementos dos cambios dos diferentes parámetros ó longo do tempo.
+\end{enumerate}

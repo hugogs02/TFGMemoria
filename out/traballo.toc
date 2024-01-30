@@ -22,23 +22,24 @@
 \contentsline {subsubsection}{Script de procesado de datos}{11}{section*.8}%
 \contentsline {subsection}{\numberline {3.1.2}Middleware}{12}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Frontend}{12}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Tecnoloxías empregadas}{13}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Anaconda}{13}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.2}Tecnoloxías empregadas}{12}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Anaconda}{12}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}HARP}{13}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}ERDDAP}{13}{subsection.3.2.3}%
 \contentsline {section}{\numberline {3.3}Desenvolvemento do sistema}{13}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Introdución}{13}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Descarga de datos}{14}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Procesamento de datos}{17}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.2}Descarga de datos}{15}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Procesamento de datos}{18}{subsection.3.3.3}%
 \contentsline {subsubsection}{Transformación dos datos de $CO$}{18}{section*.9}%
 \contentsline {subsubsection}{Transformación dos datos de $NO_2$}{19}{section*.10}%
 \contentsline {subsubsection}{Transformación dos datos de $O_3$}{20}{section*.11}%
-\contentsline {subsubsection}{Transformación dos datos de $SO_2$}{20}{section*.12}%
-\contentsline {section}{\numberline {3.4}Implementación do sistema}{21}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Configuración da máquina de AWS}{21}{subsection.3.4.1}%
+\contentsline {subsubsection}{Transformación dos datos de $SO_2$}{21}{section*.12}%
+\contentsline {section}{\numberline {3.4}Implementación do sistema}{22}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Configuración da máquina de AWS}{22}{subsection.3.4.1}%
 \contentsline {subsection}{\numberline {3.4.2}Configuración de servidor ERDDAP}{23}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Realización da interface}{24}{subsection.3.4.3}%
-\contentsline {chapter}{\numberline {4}Probas}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{27}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Manuais técnicos}{29}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Manuais de usuario}{31}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{33}{appendix.Alph2}%
+\contentsline {chapter}{\numberline {4}Probas}{27}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{29}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Manuais técnicos}{31}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {B}Manuais de usuario}{33}{appendix.Alph2}%
+\contentsline {chapter}{Bibliografía}{35}{appendix.Alph2}%
