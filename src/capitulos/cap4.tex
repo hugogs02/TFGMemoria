@@ -9,13 +9,7 @@ garantindo que funcionan de maneira axeitada.
 
 Estas probas unitarias fixéronse de maneira manual, comprobando as diferentes funcións de extracción e transformación de datos. Comprobouse, por exemplo, o funcionamento da función de descarga de
 datos, revisando que a mesma devolve os datos no formato agardado (arquivos netCDF) e que, en caso de producirse un erro na descarga, o programa pode continuar descargando o resto de arquivos
-correctamente, minimizando a perda de datos. Así, como podemos ver na figura \ref{fig:descarga}, se a descarga é satisfactoria mostraranse os nomes dos arquivos que se descargaron.
-
-\begin{figure}
-    %\centerline{\includegraphics[width=10cm]{figuras/descarga.png}}
-    \caption{Exemplo de descarga satisfactoria de arquivos.}
-    \label{fig:descarga}
-\end{figure}
+correctamente, minimizando a perda de datos. Así, se a descarga é satisfactoria, mostraranse os nomes dos arquivos que se descargaron.
 
 Tamén se realizaron probas sobre as funcións que importan e transforman os arquivos a datos agregados de nivel L3. Neste caso, comprobouse que a función importa correctamente os arquivos, e que os
 transforma empregando as operacións definidas, producindo o arquivo resultante tamén en formato netCDF e co patrón de nome desexado.

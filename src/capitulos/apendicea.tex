@@ -4,4 +4,81 @@
 %neles incluirase toda a información precisa para aquelas persoas que se vaian encargar do desenvolvemento e/ou modificación
 %do Sistema (por exemplo código fonte, recursos necesarios, operacións necesarias para modificacións e probas, posibles
 %problemas, etc.). O código fonte poderase entregar en soporte informático en formatos PDF ou postscript.
-No repositorio de GitHub \url{} dispoñemos de todo o código fonte da aplicación, tanto do backend de Python, coma da interface e os arquivos de configuración do servidor ERDDAP.
+Este manual técnico explica como realizar a instalación do sistema e o seu mantemento por parte dos administradores.
+\section{Instalación}\label{instalacion}
+No repositorio de GitHub \url{https://github.com/hugogs02/TROPOMIVisor} dispoñemos de todo o código fonte da aplicación, tanto do backend de Python, coma da interface e os arquivos de configuración do
+servidor ERDDAP. É preciso recalcar que, no caso de querer instalar o sistema no ordenador propio, este deberá empregar o sistema operativo Ubuntu. Para a súa instalación, é preciso seguir os
+seguintes pasos:
+\begin{enumerate}
+    \item \textbf{Instalar Python}. O sistema require \textbf{Python 3.11.6}, o cal se instalará mediante Anaconda, para facilitar tamén a xestión e instalación de paquetes. Para instalar Anaconda
+    , debemos descargar o instalador dispoñible en \url{https://www.anaconda.com/download#downloads} . Deberase dar permiso de execución (\texttt{chmod o+rx [filename]}). Será necesario seguir os
+    pasos que indica o instalador, entre os que se inclúen elixir o directorio de instalación, engadilo ó PATH e inicializar a instalación co comando \texttt{conda init}. A continuación, 
+    instalaremos os seguintes paquetes:
+    \begin{itemize}
+        \item calendar (vén preinstalado con Python).
+        \item datetime (versión 5.4).
+        \item dateutil.parser (versión 2.8.2).
+        \item glob2 (versión 0.7).
+        \item harp (versión 1.17). Instalado con conda-forge.
+        \item os (vén preinstalado con Python).
+        \item pandas (versión 2.1.4).
+        \item requests (versión 2.31.0).
+        \item shutil (vén preinstalado con Python).
+        \item sys (vén preinstalado con Python).
+        \item time (vén preinstalado con Python).
+        \item zipfile36 (versión 0.1.3).
+    \end{itemize}
+    \item \textbf{Instalar Java}. A instalación de Java debe ser da versión 17 (ou superior). Instalar Java en Ubuntu é sinxelo, simplemente se debe executar o comando \texttt{apt install openjdk-17-jdk
+    openjdk-17-jre} .
+    \item \textbf{Configurar Tomcat}. Para configurar correctamente tomcat, débese crear un usuario tomcat (con \texttt{sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat}), e descargar o
+    arquivo de Tomcat (versión 10) dende \url{https://tomcat.apache.org/download-10.cgi} . Este deberá ser descomprimido no directorio \textit{opt/tomcat} Accederase ó arquivo \texttt{/opt/tomcat/conf/tomcat-users.xml}
+    para configurar os usuarios Manager e Host Manager. A continuación, crearase un servizo para Tomcat, mediante o comando \texttt{sudo nano \break/etc/systemd/system/tomcat.service}, engadindo as
+    seguintes liñas:
+    \begin{lstlisting}
+    [Unit]
+    Description=Tomcat
+    After=network.target
+
+    [Service]
+    Type=forking
+
+    User=tomcat
+    Group=tomcat
+
+    Environment="JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64"
+    Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+    Environment="CATALINA_BASE=/opt/tomcat"
+    Environment="CATALINA_HOME=/opt/tomcat"
+    Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+    Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+    ExecStart=/opt/tomcat/bin/startup.sh
+    ExecStop=/opt/tomcat/bin/shutdown.sh
+
+    RestartSec=10
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+    \end{lstlisting}
+    A continuación, recargarase o \textit{systemctl} con \texttt{sudo systemctl daemon-reload} e arrancarase o servizo de Tomcat con \texttt{sudo systemctl start tomcat}. Configurarase Tomcat para
+    que arranque co sistema, mediante o comando \texttt{sudo systemctl enable tomcat}. Por último, executarase \texttt{sudo ufw allow 8080} para permitir tráfico polo porto 8080.
+    \item \textbf{Executar os scripts de Python para obtención de datos}. Empregando git, podemos descagar o código dispoñible no repositorio que indicamos anteriormente. Co código descargado, 
+    podemos executar o script principal para descargar os datos. O formato de execución será: \texttt{python app.py produto data\_inicio data\_fin ruta\_descarga ruta\_procesado}. "produto" deberá
+    ser un entre os dispoñibles (L2\_\_CO\_\_\_\_, L2\_\_NO2\_\_\_, L2\_\_O3\_\_\_\_, L2\_\_SO2\_\_\_), e a data deberá ter o formato AAAA-MM-DD
+    \item \textbf{Configurar o servidor ERDDAP}. Para configurar o servidor ERDDAP, deberemos seguir as instrucións de \url{https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html}, empregando
+    os arquivos de setup.xml e datasets.xml que se descargaron do repositorio de GitHub.
+    \item \textbf{Configurar a interface web}. Para a interface web, crearase unha aplicación nova de Tomcat. Isto farase creando unha nova carpeta no directorio \textit{/opt/tomcat/webapps/}, e
+    copiando á mesma o arquivo HTML que se descargou do repositorio.
+\end{enumerate}
+
+Unha vez seguidos todos estes pasos, o sistema estará listo para o seu uso.
+
+\section{Mantemento}\label{mantemento}
+O mantemento do sistema é sinxelo, pois o administrador só precisa consultar o log de erros o día que se indicou no \textit{job} de cron para executar a actualización dos datos, e comprobar que
+funcionou correctamente. En caso de que se rexistre algunha mensaxe de erro relativa á descarga dos arquivos, se esta se dá nun ou dous deles, pode ignorarse, posto que non afectara ó resultado. En
+caso de que se produzan máis erros, será preciso executar o script principal manualmente, para realizar a descarga de datos. O mesmo será preciso en caso de ter algún erro coa importación e
+transformación dos datos.
+
+Tamén poden ocurrir erros ou problemas co servidor ERDDAP. Neste caso, o mellor é reiniciar Tomcat, empregando para iso os scripts \texttt{shutdown.sh} e \texttt{startup.sh}, ubicados en
+\textit{/opt/tomcat/bin/} .

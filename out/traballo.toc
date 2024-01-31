@@ -40,9 +40,11 @@
 \contentsline {subsection}{\numberline {3.4.3}Realización da interface}{24}{subsection.3.4.3}%
 \contentsline {chapter}{\numberline {4}Probas}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Probas unitarias}{27}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Probas de integración}{29}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Probas de rendemento}{29}{section.4.3}%
+\contentsline {section}{\numberline {4.2}Probas de integración}{30}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Probas de rendemento}{30}{section.4.3}%
 \contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{31}{chapter.5}%
 \contentsline {chapter}{\numberline {A}Manuais técnicos}{33}{appendix.Alph1}%
-\contentsline {chapter}{\numberline {B}Manuais de usuario}{35}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{37}{figure.Alph2.1}%
+\contentsline {section}{\numberline {A.1}Instalación}{33}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Mantemento}{35}{section.Alph1.2}%
+\contentsline {chapter}{\numberline {B}Manuais de usuario}{37}{appendix.Alph2}%
+\contentsline {chapter}{Bibliografía}{39}{figure.Alph2.1}%
