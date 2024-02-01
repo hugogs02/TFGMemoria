@@ -11,17 +11,27 @@ O usuario ten, desta forma, fácil acceso ós datos de satélite, podendo visual
 mediante a agregación dos mesmos de forma mensual podemos reducir drasticamente as necesidades de almacenamento, o cal resulta realmente beneficioso tendo en conta que, para un ano, poderiamos
 estar falando de cantidades en torno a 300GB de datos para cada parámetro por ano, mentres que o noso sistema precisa menos de 1GB por parámetro.
 
+Desta forma, podemos considerar que se satisfixeron os catro obxectivos que se definiron en \ref{obxectivos}. Logrouse mapear a contaminación atmosférica mediante os datos de sensores remotos,
+mediante a transformación dos datos dispoñibles no dataspace COPERNICUS da ESA e a súa transformación a nivel L3. Conseguimos monitorizar a variabilidade e tendencia dos parámetros relacionados coa
+contaminación do aire, tanto de forma xeográfica, visualizándoos nun mapa, como a través de gráficos de liñas. En relación con isto, tamén desenvolvimos un sinxelo visor online, para representar a
+información de forma gráfica e dinámica. Por último, implementouse un sistema interoperable para distribuír os datos, posto que o propio servidor ERDDAP permite compartir e distribuír os datos con
+outros sistemas, dunha forma uniforme.
+
 Para rematar, propóñense unha serie de melloras que se poderían aplicar ó sistema para facelo máis completo e adaptable ás necesidades dos usuarios:
 \begin{enumerate}
     \item \textbf{Maior dispoñibilidade de datos}. Os parámetros dispoñibles no dataspace de COPERNICUS inclúen, ademais dos analizados neste traballo, o metano ($CH_4$), formaldehído ($HCHO$), a
     fracción de nubes ou o índice UV. Estes parámetros tiveron que descartarse do proxecto por falta de tempo, polo que podería ser interesante incluílos en ampliacións futuras. Asimesmo, os datos
     están dispoñibles dende mediados do ano 2018, polo que tamén sería factible ampliar a dispoñibilidade temporal dos mesmos, que actualmente é dende xaneiro de 2023 ó presente. Tamén se podería
-    ampliar a área de análise dos datos a todo o continente europeo, ou incluso a todo o mundo
+    ampliar a área de análise dos datos a todo o continente europeo, ou incluso a todo o mundo.
     \item \textbf{Capacidade de automatización}. Podería ser útil integrar utilidades de automatización no sistema, de forma que os usuarios puideran recibir, de forma automática, algúns gráficos
     que eles mesmos elixan segundo teñamos novos produtos dispoñibles, para facilitármoslles a análise dos mesmos.
     \item \textbf{Mellora da experiencia e interface de usuario}. Unha forma de mellora da interface de usuario sería crear unha interface de JavaScript empregando leaflet. Isto non puido levarse a
     cabo neste proxecto, pero podería ser práctico en caso de aumentar tamén a dispoñibilidade de datos, xa que nos permite unha maior interacción cos mapas. Tamén poderían implementarse
     visualizacións en forma de gráficos 3D.
+    \item \textbf{Creación dun \textit{dashboard} para visualizar os parámetros en distintas zonas da Península}. Proponse a creación dun taboleiro que permita, a partir dos datos dos que se dispón,
+    centrarse en diferentes áreas urbanas da Península (por exemplo, a área metropolitana de Madrid ou a de Barcelona), para analizar máis en profundidade o valor e a evolución dos diferentes par
+    ámetros. Tamén se podería introducir, neste taboleiro, un apartado mediante o cal visualizar as zonas quentes; é dicir, aquelas zonas con valores especialmente altos de diferentes parámetros
+    nun mes en concreto, ou de forma prolongada no tempo.
     \item \textbf{Integración con Machine Learning}. Como un campo que está actualmente en auxe, o machine learning resulta especialmente relevante no ámbito da monitorización ambiental, xa que nos
     permitiría, a partir dos datos dos que dispoñemos, identificar patróns nos mesmos co obxectivo de elaborar predicións. Desta forma, poderíamos crear, por exemplo, agregacións semanais no canto
     de mensuais, o que nos permitiría dispoñer de información máis pormenorizada e realizar mellores análises. Isto podería empregars en colaboración con diferentes cidades, para saberen cando

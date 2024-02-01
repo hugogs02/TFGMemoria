@@ -43,8 +43,8 @@
 \contentsline {section}{\numberline {4.2}Probas de integración}{30}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Probas de rendemento}{30}{section.4.3}%
 \contentsline {chapter}{\numberline {5}Conclusións e posibles ampliacións}{31}{chapter.5}%
-\contentsline {chapter}{\numberline {A}Manuais técnicos}{33}{appendix.Alph1}%
-\contentsline {section}{\numberline {A.1}Instalación}{33}{section.Alph1.1}%
-\contentsline {section}{\numberline {A.2}Mantemento}{35}{section.Alph1.2}%
-\contentsline {chapter}{\numberline {B}Manuais de usuario}{37}{appendix.Alph2}%
-\contentsline {chapter}{Bibliografía}{39}{figure.Alph2.1}%
+\contentsline {chapter}{\numberline {A}Manuais técnicos}{35}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Instalación}{35}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Mantemento}{37}{section.Alph1.2}%
+\contentsline {chapter}{\numberline {B}Manuais de usuario}{39}{appendix.Alph2}%
+\contentsline {chapter}{Bibliografía}{41}{figure.Alph2.1}%

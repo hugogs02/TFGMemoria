@@ -24,12 +24,12 @@ No que respecta á arquitectura do sistema software desenvolvido, podemos identi
 \subsection{Backend}\label{backend}
 Como xa comentamos, o backend da aplicación desenvolveuse en Python. A elección desta linguaxe de programación para este módulo é sinxela: é a linguaxe de programación máis axeitada
 para traballar con grandes cantidades de datos. Ademais, é a linguaxe que ten maior compatibilidade con tódalas ferramentas que deberemos empregar para o procesado dos datos, o que
-fai que sexa, practicamente, a única opción a ter en conta..
+fai que sexa, practicamente, a única opción a ter en conta.
 
 Así, o backend de Python divídese en catro scripts diferentes, cada un cunha funcionalidade determinada.
 
 \subsubsection{Script principal e automatización}\label{app}
-Por unha parte, temos o script principal, \texttt{app.py}. Este é o script dende o que se executa o programa. Nel, establécense os parámetros cos cales se executaran os módulos de
+Por unha parte, temos o script principal, \texttt{app.py}. Este é o script dende o que se executa o programa. Nel, establécense os parámetros cos cales se executarán os módulos de
 descarga e procesado dos arquivos, comprobando tamén a súa validez (como, por exemplo, que a data de inicio da busca sexa anterior á data de fin). Pódese executar tanto por liña de comandos
 coma importando o arquivo e chamando á función.
 
@@ -42,8 +42,8 @@ de que, cando se execute o script, tódolos arquivos que se deben ter en conta e
 
 
 \subsubsection{Script de descarga de datos}\label{descarga}
-En segundo lugar, temos o script de descarga de datos. A súa función principal é \texttt{obtenArquivos}, que recibe como parámetros a area de interese da busca, as datas de inicio e de fin, o parámetro
-para o que se realizará a busca e o directorio onde se almacenarán os arquivos. Se este directorio non existe, creao. A continuación, empregando a API de oData, realiza unha consulta para obter os
+En segundo lugar, temos o script de descarga de datos. A súa función principal é \texttt{obtenArquivos}, que recibe como parámetros a área de interese da busca, as datas de inicio e de fin, o parámetro
+para o que se realizará a busca e o directorio onde se almacenarán os arquivos. Se este directorio non existe, créao. A continuación, empregando a API de oData, realiza unha consulta para obter os
 arquivos que se descargarán. Iterando por estes arquivos, obten o seu Id e o nome e, se estos non existen (tanto en formato zip, por estaren comprimidos, ou en formato zip, por estaren
 descomprimidos), realiza a súa descarga, na función \texttt{descargaArquivo}. Posteriormente, descomprime o arquivo coa función \texttt{descomprimeArquivo}, os cales quedan dentro dunha carpeta co seu
 nome. Por tanto, unha vez descargados e descomprimidos tódolos arquivos, móveos á carpeta principal e elimina tódalas subcarpetas.
@@ -64,7 +64,7 @@ Malia que cada unha das funcións de procesado son bastante semellantes, posto q
 que exportaremos difire en función do parámetro. Estas funcións reciben unha lista de arquivos a procesar e un directorio onde almacenar o arquivo final procesado. Empregando a función \texttt{
     import\_product} de harp, importamos os arquivos, realizando con eles unha serie de operacións para filtrar os datos segundo a súa calidade, como se indica nos diferentes manuais. Unha vez temos
 tódolos produtos importados, realizamos unha serie de operacións, propias para cada produto, para quedarnos cos datos dunha zona e obter con eles unha cuadrícula; e unha serie de post-operacións,
-globais a tódalas funcións, para realizar a agregación dos datos. A continuación, definimos o nome do arquivo a exportar (que segue o patrón parametro\_AAAAMM.nc), e gardámolo.
+globais a tódalas funcións, para realizar a agregación dos datos. A continuación, definimos o nome do arquivo a exportar (que segue o patrón \texttt{parametro\_AAAAMM.nc}), e gardámolo.
 
 \subsection{Middleware}\label{middleware}
 O middleware que empregamos será ERDDAP. Isto é un servidor de datos que proporciona unha forma simple e consistente de acceder e descargar múltiples datasets científicos, de diferentes fontes, nun
@@ -83,9 +83,9 @@ resumo, é preciso:
 \end{enumerate}
 
 \subsection{Frontend}\label{frontend}
-Para o frontend do proxecto, crearemos unha aplicación sinxela en Tomcat, empregando HTML. Facendo uso da funcionalidade que nos proporciona ERDDAP para xerar imaxes a partir dos datos, crearemos
-unha interface na que teñamos, por unha parte, un mapa cos datos que queiramos visualizar e, por outra parte, dous selectores, un para seleccioanr o parámetro a consultar e outro para seleccionar
-o mes e ano.
+Para o frontend do proxecto, crearemos unha aplicación sinxela en Tomcat, empregando HTML. Facendo uso da funcionalidade que nos proporciona \break ERDDAP para xerar imaxes a partir dos datos,
+crearemos unha interface na que teñamos, por unha parte, un mapa cos datos que queiramos visualizar e, por outra parte, dous selectores, un para seleccioanr o parámetro a consultar e outro para
+seleccionar o mes e ano.
 
 \section{Tecnoloxías empregadas}\label{tecnoloxias}
 \subsection{Anaconda}\label{anaconda}
@@ -114,8 +114,8 @@ satélites e como miden e procesan os datos. Tamén se explican os diferentes ni
 datos:
 \begin{enumerate}
     \item \textbf{Nivel 0 (L0):} estes datos son datos crus, tal e como se obteñen das medicións do satélite, a máxima resolución.
-    \item \textbf{Nivel 1 (L1):} son os datos de nivel L0, pero con referencias temporais e información dos sensores empregados para as medicións, coma coeficientes de calibración radiometrica e
-    xeometrica.
+    \item \textbf{Nivel 1 (L1):} son os datos de nivel L0, pero con referencias temporais e información dos sensores empregados para as medicións, coma coeficientes de calibración radiométrica e
+    xeométrica.
     \item \textbf{Nivel 2 (L2):} os datos de nivel L1, pero con variables xeofísicas derivadas na mesma resolución e ubicación que os datos de nivel L1.
     \item \textbf{Nivel 3 (L3):} as variables obtidas dos datos de nivel L2, mapeadas en forma de cuadrículas espazo-temporais, completas e con consistencia.
 \end{enumerate}
@@ -123,26 +123,26 @@ datos:
 Empregar datos de nivel L3 ten diversas vantaxes:
 \begin{itemize}
     \item Podemos dispoñer dun único arquivo por día (ou por mes, ou o período de tempo que nos interese). Polas características do satélite, o seu ciclo orbital é de 16 días, realizando 14 órbitas
-    por día \cite{s5porbit}. Polo tanto, para dous días distintos, é posible que un arquivo non cubra a totalidade da área de interese. Ó realizar as operacións de agregación dos datos, aseguramos
-    ter un único arquivo por día, facendo a manipulación dos datos moito máis sinxela.
+    por día, ou 227 órbitas por ciclo \cite{s5porbit}. Polo tanto, para dous días distintos, é posible que un arquivo non cubra a totalidade da área de interese. Ó realizar as operacións de
+    agregación dos datos, aseguramos ter un único arquivo por día, facendo a manipulación dos datos moito máis sinxela.
     \item Datos dispostos en cuadrículas uniformes. Coa agregación dos datos, podemos crear tamén unha cuadrícula para os mesmos, dispoñéndoos de forma regular no mapa ou área que nos interese
     estudar.
     \item Arquivos de menor tamaño. Os arquivos de nivel L2 conteñen unha maior cantidade de datos, unha gran parte dos cales pode non ser relevante para o noso sistema. O seu procesamento a nivel
-    L3 permite elimar estos datos e variables innecesarias, minguando o tamaño dos arquivos.
+    L3 permite eliminar estos datos e variables innecesarias, minguando o tamaño dos arquivos.
     \item Maior calidade nos datos. Nos diferentes manuais dos produtos, establécense diversos criterios de calidade asociados ós datos, que podemos empregar para descartar medicións de certas
     áreas pequenas do espazo en caso de que non teñan unha calidade suficiente. Desta forma, ó procesar os datos, podemos eliminar estas medicións de menor calidade e, como crearemos agregados por
     grandes períodos de tempo, evitaremos que queden vacíos.
 \end{itemize}
 
-O satélite SENTINEL 5P proporciona datos de seis parámetros moi relacionados coa contaminación atmosférica: ozono ($O_3$), tanto a columna troposférica (aquela que se forma en capas mais altas da
-atmosfera) coma a columna total; dióxido de nitróxeno ($NO_2$), tanto a columna troposférica coma a total; dióxido de xofre ($SO_2$), a columna total; monóxido de carbono ($CO$), a columna total;
-metano ($CH_4$), a columna total; e formaldehido ($HCHO$), a columna total. Tratar todos estes parámetros era difícil de abordar, polo que foi preciso descartar dous deles para non telos en conta.
-Baseándonos na información dispoñible en \cite{airpollutants}, decidimos elixir os seguintes: $NO_2$, $CO$, $SO_2$ e $O_3$. Escolléronse estes parámetros por seren os que máis problemas de saúde
-adoitan causar, ademais de por empregárense máis a miúdo nos diferentes mapas de contaminación.
+O satélite SENTINEL 5P proporciona datos, cunha resolución espacial de 7x7 $km^2$, de seis parámetros moi relacionados coa contaminación atmosférica: ozono ($O_3$), tanto a columna troposférica (aquela
+que se forma en capas máis altas da atmosfera) coma a columna total; dióxido de nitróxeno ($NO_2$), tanto a columna troposférica coma a total; dióxido de xofre ($SO_2$), a columna total; monóxido
+de carbono ($CO$), a columna total; metano ($CH_4$), a columna total; e formaldehido ($HCHO$), a columna total. Tratar todos estes parámetros era difícil de abordar, polo que foi preciso
+descartar dous deles para non telos en conta. Baseándonos na información dispoñible en \cite{airpollutants}, decidimos elixir os seguintes: $NO_2$, $CO$, $SO_2$ e $O_3$. Escolléronse estes par
+ámetros por seren os que máis problemas de saúde adoitan causar, ademais de por empregárense máis a miúdo nos diferentes mapas de contaminación.
 
 \subsection{Descarga de datos}\label{appdescarga}
-Unha vez decididos os parámetros, podemos comezar coa descarga dos datos. Para isto, no Dataspace Copernicus temos dispoñibles múltiples APIs que podemos empregar para acceder e descargar os datos
-. Estas APIs poden ser de tres tipos: \textit{Catalogue APIs}, que permiten buscar no catálogo de produtos dispoñibles e descargar os arquivos; \textit{Streamlined Data Access (EDA) APIs}, que
+Unha vez decididos os parámetros, podemos comezar coa descarga dos datos. Para isto, no Dataspace COPERNICUS temos dispoñibles múltiples APIs que podemos empregar para acceder e descargar os datos.
+Estas APIs poden ser de tres tipos: \textit{Catalogue APIs}, que permiten buscar no catálogo de produtos dispoñibles e descargar os arquivos; \textit{Streamlined Data Access (SDA) APIs}, que
 permiten obter datos de observación terrestre (EO) xunto con ferramentas de procesamento e análise; e outras APIs, que permiten, por exemplo, o acceso a datos EO empregando \textit{buckets} de S3.
 No noso caso, elixiremos unha API do primeiro tipo, xa que é preciso poder buscar e filtrar os produtos para descargar aqueles que nos interesen.
 
@@ -171,14 +171,15 @@ Por outra parte, existen as seguintes opcións, que deben ir separadas dos filtr
 \end{itemize}
 
 Para realizar a busca dos produtos, unicamente é preciso empregar unha libraría que nos permita facer peticións HTTP. Neste caso, elixiuse a libraría \texttt{requests} de Python, xa que permite
-realizar estas peticións dunha forma moi sinxela. A URL base dende a que obteremos os datos é \texttt{https://catalogue.dataspace. copernicus.eu/odata/v1/Products}, engadiremos os seguintes filtros:
+realizar estas peticións dunha forma moi sinxela. A URL base dende a que obteremos os datos é \texttt{\url{https://catalogue.dataspace.copernicus.eu/odata/v1/Products}}, engadiremos os seguintes
+filtros:
 \begin{itemize}
     \item \textbf{Área xeográfica:} limitaremos a busca á Península Ibérica, para o que definiremos o seguinte polígono: \texttt{POLYGON((-9.647785 35.912135,-9.647785 44.230843,4.916224 44.230843,
         4.916224 35.912135,-9.647785\break 35.912135))}.
     Esta área é a que se mostra na imaxe \ref{fig:areainterese}
     \begin{figure}
         \centerline{\includegraphics[width=10cm]{figuras/area.png}}
-        \caption{Area de interese sobre a que se realiza a busca.}
+        \caption{Área de interese sobre a que se realiza a busca.}
         \label{fig:areainterese}
     \end{figure}
     \item \textbf{Colección de produtos:} filtramos os produtos da colección \texttt{SENTINEL-5P}.
@@ -205,7 +206,7 @@ escribiremos o contido do arquivo nun ficheiro .zip, no directorio que correspon
 
 Inmediatamente despois de descargar o arquivo, temos que descomprimilo posto que, como vimos de comentar, é preciso descargalo en formato ZIP. Para isto, temos unha función moi sinxela, denominada
 \texttt{descomprimeArquivo}, que comproba que o arquivo exista e emprega a libraría zipfile para extraelo, comprobando tamén que sexa un arquivo zip válido (capturando a excepción \textit{zipfile
-.BadZipFile}). Unha vez descomprimido, eliminaremos o ficheiro zip, posto que xa non será necesario. Debemos ter en conta que o ficheiro final que queremos obter, en formato netCDF (ou .mc) non se
+.BadZipFile}). Unha vez descomprimido, eliminaremos o ficheiro zip, posto que xa non será necesario. Debemos ter en conta que o ficheiro final que queremos obter, en formato netCDF (ou .nc) non se
 atopará directamente no directorio en que se extrae, senón que se atopa dentro dunha subcarpeta co nome do arquivo que acabamos de descargar. Por tanto, unha vez descargamos e descomprimimos
 tódolos arquivos, deberemos mover os ficheiros .nc ó directorio de descarga, podendo eliminar posteriormente tódolos subdirectorios.
 
@@ -222,15 +223,15 @@ A continuación, explicarase máis detalladamente o proceso de transformación d
 \subsubsection{Transformación dos datos de $CO$}
 A función de procesado dos datos de monóxido de carbono recibe, ó igual que as demais, unha lista de arquivos e unha ruta onde almacenar os arquivos procesados. Con esta lista de arquivos, podemos
 iterar sobre ela, de forma que importamos os arquivos de un en un. Isto faise así, e non todos de golpe, para que o proceso de importado sexa máis eficiente e previr fallos ó ter que importar
-numerosos arquivos simultáneamente. Así, empregamos a función \texttt{import\_products} de HARP, a cal nos devolve un produto de HARP que engadiremos a unha lista. Esta función pode recibir unha
-serie de operacións que se aplicarán ós arquivos á hora de importalos. A lista das posibles operacións que se poden empregar en HARP atópase en \cite{HARPdoc}. No caso do monóxido de carbono, temos as
-seguintes operacións:
+numerosos arquivos simultáneamente. Desta forma, empregamos a función \texttt{import\_products} de HARP, a cal nos devolve un produto de HARP que engadiremos a unha lista. Esta función pode recibir
+unha serie de operacións que se aplicarán ós arquivos á hora de importalos. A lista das posibles operacións que se poden empregar en HARP atópase en \cite{HARPdoc}. No caso do monóxido de carbono,
+temos as seguintes operacións:
 \begin{enumerate}
-    \item \texttt{\textbf{CO\_column\_number\_density\_validity\>5}}0 : con isto, filtramos os datos en base á calidade dos mesmos. Segundo as indicacións do manual de producto de CO (\cite{COmanual}),
+    \item \texttt{\textbf{CO\_column\_number\_density\_validity$>$50}} : con isto, filtramos os datos en base á calidade dos mesmos. Segundo as indicacións do manual de producto de CO \cite{COmanual},
     recoméndase ignorar os datos cun valor qa\_value menor que 0.5. Porén, como se explica en \cite{HARPCO}, a variable qa\_value é mapeada como CO\_column\_number\_density\_validity.
     \item \texttt{\textbf{derive(CO\_column\_number\_density [Pmolec/cm2]}}: a operación derive serve para cambiar o tipo de datos ou unidade dunha variable. Neste caso, cambiaremos o valor da
     columna de monóxido de carbono (que no arquivo orixinal se denomina carbonmonoxide\_total\_column) a petamoléculas por centímetro cadrado, xa que esta vén en moles por metro cadrado, para
-    traballar con valores numéricos máis pequenos.
+    traballar con valores numéricos máis lexibles.
     \item \texttt{\textbf{keep(latitude, longitude, latitude\_bounds, longitude\_bounds, \break CO\_column\_number\_density)}}: con esta operación, indicamos que queremos incluír estas variables no
     produto.
 \end{enumerate}
@@ -257,7 +258,7 @@ exportamos. Isto obtémolo directamente do nome de calquera un dos arquivos que 
 \subsubsection{Transformación dos datos de $NO_2$}
 Neste caso, o proceso é igual ó anterior. Os nomes das variables mapeadas atópanse dispoñibles en \cite{HARPNO2}. As operacións que aplicamos ó importar os produtos son:
 \begin{enumerate}
-    \item \texttt{\textbf{tropospheric\_NO2\_column\_number\_density\_validity\>75}}: neste caso, o manual de dióxido de nitróxeno (\cite{NO2manual}) indícanos que debemos considerar os datos cun 
+    \item \texttt{\textbf{tropospheric\_NO2\_column\_number\_density\_validity$>$75}}: neste caso, o manual de dióxido de nitróxeno (\cite{NO2manual}) indícanos que debemos considerar os datos cun
     valor de qa\_value maior a 0.75.
     \item \texttt{\textbf{derive(tropospheric\_NO2\_column\_number\_density [Pmolec/cm2])}}: derivamos a variable que orixinalmente se denomina nitrogendioxide\_tropospheric\_\break column das súas
     unidades orixinais ($mol/m^2$) a $Pmolec/cm^2$.
@@ -267,7 +268,7 @@ Neste caso, o proceso é igual ó anterior. Os nomes das variables mapeadas ató
 As operacións que se executan sobre os datos son:
 \begin{enumerate}
     \item \texttt{\textbf{bin\_spatial(2001, 35, 0.005, 3001, -10, 0.005)}}: creamos unha cuadrícula de 2001 puntos de alto, comezando no paralelo 35\textdegree, cun \textit{offset} de 0.005\textdegree;
-    \item e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
+    e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
     \item \texttt{\textbf{exclude(latitude\_bounds\_weight, longitude\_bounds\_weight, weight, latitude\_weight, longitude\_weight)}}: excluímos estas variables do produto final.
     \item \texttt{\textbf{derive(latitude\{latitude\})}} e  \texttt{\textbf{derive(longitude\{longitude\})}}: derivamos as coordenadas de latitude e lonxitude da nova cuadrícula.
 \end{enumerate}
@@ -278,7 +279,7 @@ mes o arquivo que exportamos.
 \subsubsection{Transformación dos datos de $O_3$}
 Para os datos do ozono, aplicamos as seguintes operacións ó importar os produtos:
 \begin{enumerate}
-    \item \texttt{\textbf{O3\_column\_number\_density\_validity\>50}}: neste caso, o manual do ozono (\cite{O3manual}) indícanos que debemos considerar os datos cun
+    \item \texttt{\textbf{O3\_column\_number\_density\_validity$>$50}}: neste caso, o manual do ozono (\cite{O3manual}) indícanos que debemos considerar os datos cun
     valor de qa\_value maior que 0.5.
     \item \texttt{\textbf{derive(O3\_column\_number\_density [Pmolec/cm2])}}: derivamos a variable que orixinalmente se denomina ozone\_total\_vertical\_column das súas
     unidades orixinais ($mol/m^2$) a $Pmolec/cm^2$.
@@ -288,7 +289,7 @@ Para os datos do ozono, aplicamos as seguintes operacións ó importar os produt
 Unha vez importados, executamos as seguintes operacións:
 \begin{enumerate}
     \item \texttt{\textbf{bin\_spatial(2001, 35, 0.005, 3001, -10, 0.005)}}: creamos unha cuadrícula de 2001 puntos de alto, comezando no paralelo 35\textdegree, cun \textit{offset} de 0.005\textdegree;
-    \item e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
+    e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
     \item \texttt{\textbf{exclude(latitude\_bounds\_weight, longitude\_bounds\_weight, weight, latitude\_weight, longitude\_weight)}}: excluímos estas variables do produto final.
     \item \texttt{\textbf{derive(latitude\{latitude\})}} e  \texttt{\textbf{derive(longitude\{longitude\})}}: derivamos as coordenadas de latitude e lonxitude da nova cuadrícula.
 \end{enumerate}
@@ -301,7 +302,7 @@ onde AAAA é o ano e MM é o mes o arquivo que exportamos.
 Por último, para o caso do dióxido de xofre, seguimos a mesma lóxica que nos casos anteriores. Os nomes dos mapeos das variables atópanse en \cite{HARPSO2}. Aplicamos sobre os datos que importamos
 as operacións:
 \begin{enumerate}
-    \item \texttt{\textbf{SO2\_column\_number\_density\_validity\>50}}: neste caso, o manual do dióxido de xofre (\cite{SO2manual}) indícanos que debemos considerar os datos cun
+    \item \texttt{\textbf{SO2\_column\_number\_density\_validity$>$50}}: neste caso, o manual do dióxido de xofre (\cite{SO2manual}) indícanos que debemos considerar os datos cun
     valor de qa\_value maior que 0.5.
     \item \texttt{\textbf{derive(O3\_column\_number\_density [Pmolec/cm2])}}: derivamos a variable que orixinalmente se denomina sulfurdioxide\_total\_vertical\_column das súas
     unidades orixinais ($mol/m^2$) a $Pmolec/cm^2$.
@@ -311,7 +312,7 @@ as operacións:
 Sobre os datos importados, executamos as seguintes operacións:
 \begin{enumerate}
     \item \texttt{\textbf{bin\_spatial(2001, 35, 0.005, 3001, -10, 0.005)}}: creamos unha cuadrícula de 2001 puntos de alto, comezando no paralelo 35\textdegree, cun \textit{offset} de 0.005\textdegree;
-    \item e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
+    e 3001 puntos de ancho, comezando no meridiano -10\textdegree, cun \textit{offset} de 0.005.
     \item \texttt{\textbf{exclude(latitude\_bounds\_weight, longitude\_bounds\_weight, weight, latitude\_weight, longitude\_weight)}}: excluímos estas variables do produto final.
     \item \texttt{\textbf{derive(latitude\{latitude\})}} e  \texttt{\textbf{derive(longitude\{longitude\})}}: derivamos as coordenadas de latitude e lonxitude da nova cuadrícula.
 \end{enumerate}
@@ -322,7 +323,7 @@ onde AAAA é o ano e MM é o mes o arquivo que exportamos.
 
 
 \section{Implementación do sistema}\label{implementacion}
-Unha vez comprobado que tódolos scripts funcionan correctamente, comezamos coa implementación do sistema deseñado na máquina de AWS que actuará como servidor. Os pasos a seguir serán configurar por
+Unha vez comprobado que tódolos scripts funcionan correctamente, comezamos coa implementación do sistema deseñado na máquina de AWS que actuará como servidor. Os pasos a seguir serán: configurar por
 completo a máquina, instalando todo o software e paquetes precisos; instalar e configurar o servidor ERDDAP, para que lea os datos que se almacenan na máquina; e a implementación da interface á que
 accederán os usuarios.
 
@@ -341,7 +342,7 @@ dende tódolos orixes, para poder conectarnos remotamente á máquina empregando
 ERDDAP e a aplicación web.
 
 Unha vez que temos a máquina funcionando, podemos instalar todo o software que será preciso para executar a aplicación. En primeiro lugar, instalamos Anaconda, unha distribución de Python que
-simplifica a xestión e instalación de paquetes. A súa instalación é moi sinxela, pois só é preciso descargar o instalador para ubuntu e executalo, seguindo os pasos que indica. Unha vez instalado
+simplifica a xestión e instalación de paquetes. A súa instalación é moi sinxela, pois só é preciso descargar o instalador para Ubuntu e executalo, seguindo os pasos que indica. Unha vez instalado
 Anaconda, crearásenos un entorno, que será dende o cal descarguemos os paquetes e executemos a aplicación. A lista de paquetes completa atópase no anexo \ref{manuais}. A continuación, debemos
 instalar Java, na versión 17. Debemos empregar esta versión, ou superior, para poder configurar correctamente o servidor ERDDAP. Tamén deberemos instalar \texttt{nodejs}, xunto con \texttt{npm} (o
 xestor de paquetes de nodejs), para poder executar a interface web.
@@ -381,7 +382,7 @@ creadores de ERDDAP proporcionan, ademais, unha ferramenta denominada \texttt{Ge
 Para cada datasets, crearemos unha etiqueta $<dataset>$, na cal configuraremos parámetros coma o \textit{type} (EDDGridFromNcFiles), o \textit{datasetId}, o seu estado (\textit{active=true} ou \textit{active=false}),
 cada canto se recarga e se actualiza ($<reloadEveryNMinutes>$, que estableceremos a 10080 (7 días); e \break$<updateEveryNMillis>$, que será 60000 (1 minuto)), o directorio onde se atopan os
 arquivos (no caso de, por exemplo, o monóxido de carbono, será \textit{/home/ubuntu/TFG/data/CO/}), ou a expresión regular no nome dos arquivos (que é \textit{.*\textbackslash.nc}) . Podemos
-engadir atributos, coma o nome título do dataset, un resumo dos datos que ten ou as variables do mesmo. Tamén engadiremos tres \texttt{axisVariable}: unha para o tempo, que podemos derivar do nome
+engadir atributos, coma o nome e título do dataset, un resumo dos datos que ten ou as variables do mesmo. Tamén engadiremos tres \texttt{axisVariable}: unha para o tempo, que podemos derivar do nome
 do arquivo, xa que este é unha expresión regular; a latitude, que se obtén directamente do arquivo; e a lonxitude, que tamén se obtén do arquivo. Por último, engadiremos unha \texttt{dataVariable}, que
 será a variable que se mostrará no mapa. Engadirémoslle atributos coma o tipo de dato (\textit{double}), o nome, o valor mínimo e o valor máximo. A configuración completa do arquivo datasets.xml
 está no anexo \ref{manuais}.
@@ -398,3 +399,29 @@ por defecto coma unha imaxe do mapa de monóxido de carbono, que se actualizará
 Coa etiqueta $<script>$, introduciremos o código de JavaScript. Definiremos unha función actualizar, na cal obteremos o valor dos selectores, para poder obter os parámetros que son precisos para
 parametrizar a query. Con isto, cambiaremos o \textit{source} da imaxe, para que se poida actualizar. Engadiremos un \texttt{eventListener} ós selectores, que se actualice cando se produza algún
 cambio, chamando á función actualizar.
+
+Un exemplo de como resultaría esta interface atópase na figura \ref{fig:interfazfoto}, onde se ven os dous selectores definidos. O selector dos parámetros conta cos catro parámetros definidos, e o
+selector de data permite elixir, en primeiro lugar, o ano desexado e, en segundo lugar, o mes. Resulta especialmente interesante observar os valores obtidos no caso do dióxido de nitróxeno, xa que
+se aprecia con claridade tanto a resolución dos datos, como o efecto que se comentou na \hyperref[introducion]{introdución} da concentración da contaminación en áreas urbanas, coma poden ser Madrid
+ou Barcelona, observando mesmo altos valores de contaminación na zona do norte de Arxelia.
+\begin{figure}
+    \centerline{\includegraphics[width=10cm]{figuras/interfaz.png}}
+    \caption{Exemplo da interface para NO2 en novembro de 2023.}
+    \label{fig:interfazfoto}
+\end{figure}
+
+Ademais, malia que esta funcionalidade non se proporciona directamente na interface da aplicación, podemos empregar a interface de ERDDAP (accedendo a ela en \url{http://13.53.65.240:8080/erddap/index.html})
+para ver outro tipo de gráficos. Así, podemos centrar o mapa nunha zona xeográfica específica, por exemplo Madrid, como se pode ver na figura \ref{fig:madridMapa}. Ademais, tamén podemos crear gráficos
+de liñas, para ver os distintos valores dun parámetro ó longo dos meses de forma máis gráfica. Isto é o que se ve na figura \ref{fig:madridNO2}, onde se observa a evolución da contaminación por dióxido
+de nitróxeno nesta área metropolitana, e como o seu valor é menor nos meses de verán, cando hai máis xente de vacacións.
+
+\begin{figure}
+    \centerline{\includegraphics[width=10cm]{figuras/NO2Madrid.png}}
+    \caption{Exemplo da interface de ERDDAP co mapa de NO2 centrado en Madrid.}
+    \label{fig:madridMapa}
+\end{figure}
+\begin{figure}
+    \centerline{\includegraphics[width=10cm]{figuras/NO2MadridLineas.png}}
+    \caption{Exemplo da interface de ERDDAP cos valores de NO2 de Madrid.}
+    \label{fig:madridNO2}
+\end{figure}

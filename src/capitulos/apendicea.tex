@@ -34,6 +34,7 @@ seguintes pasos:
     arquivo de Tomcat (versión 10) dende \url{https://tomcat.apache.org/download-10.cgi} . Este deberá ser descomprimido no directorio \textit{opt/tomcat} Accederase ó arquivo \texttt{/opt/tomcat/conf/tomcat-users.xml}
     para configurar os usuarios Manager e Host Manager. A continuación, crearase un servizo para Tomcat, mediante o comando \texttt{sudo nano \break/etc/systemd/system/tomcat.service}, engadindo as
     seguintes liñas:
+    \lstset{numbers=left,breaklines=true}
     \begin{lstlisting}
     [Unit]
     Description=Tomcat
@@ -64,7 +65,7 @@ seguintes pasos:
     A continuación, recargarase o \textit{systemctl} con \texttt{sudo systemctl daemon-reload} e arrancarase o servizo de Tomcat con \texttt{sudo systemctl start tomcat}. Configurarase Tomcat para
     que arranque co sistema, mediante o comando \texttt{sudo systemctl enable tomcat}. Por último, executarase \texttt{sudo ufw allow 8080} para permitir tráfico polo porto 8080.
     \item \textbf{Executar os scripts de Python para obtención de datos}. Empregando git, podemos descagar o código dispoñible no repositorio que indicamos anteriormente. Co código descargado, 
-    podemos executar o script principal para descargar os datos. O formato de execución será: \texttt{python app.py produto data\_inicio data\_fin ruta\_descarga ruta\_procesado}. "produto" deberá
+    podemos executar o script principal para descargar os datos. O formato de execución será: \texttt{python app.py produto data\_inicio data\_fin ruta\_descarga ruta\_procesado}. ``produto`` deberá
     ser un entre os dispoñibles (L2\_\_CO\_\_\_\_, L2\_\_NO2\_\_\_, L2\_\_O3\_\_\_\_, L2\_\_SO2\_\_\_), e a data deberá ter o formato AAAA-MM-DD
     \item \textbf{Configurar o servidor ERDDAP}. Para configurar o servidor ERDDAP, deberemos seguir as instrucións de \url{https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html}, empregando
     os arquivos de setup.xml e datasets.xml que se descargaron do repositorio de GitHub.
